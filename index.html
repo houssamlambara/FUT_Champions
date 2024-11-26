@@ -13,8 +13,7 @@
 
         <div class="flex items-center">
             <button class="text-white text-2xl"><i class="fas fa-bars"></i></button>
-            <img alt="Logo" class="ml-4 rounded-lg" height="40" src="./src/assets/img/futbin-green-small.png"
-                width="50" />
+            <img alt="Logo" class="ml-4 rounded-lg" height="100" src="./src/assets/img/Fut-champions.png" width="100" />
         </div>
 
         <nav class="flex items-center justify-center space-x-8 font-bold">
@@ -23,27 +22,52 @@
             <a class="text-white hover:text-green-400" href="#">Squads</a>
             <a class="text-white hover:text-green-400" href="#">Market</a>
         </nav>
-
         <div>
-            <button class="bg-green-600 text-white p-3 rounded-lg">Sign in</button>
+            <button class="bg-green-600 text-white p-4 rounded-lg" id="addPlayerButton">Add Player</button>
+        </div>
+        <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-70 hidden z-50">
+            <div class="flex items-center justify-center h-full">  
+                <div class="bg-gray-300 p-8 rounded-lg shadow-xl max-w-sm w-full">
+                   <form id="playerForm">
+
+                        <input type="text" id="name" placeholder="Nom" 
+                            class="text-black border border-gray-300 p-4 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        
+                        <input type="text" id="position" placeholder="Poste"
+                            class="text-black border border-gray-300 p-4 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        
+                        <input type="text" id="nationality" placeholder="Nationalité"
+                            class="text-black border border-gray-300 p-4 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        
+                        <input type="text" id="team" placeholder="Équipe"
+                            class="text-black border border-gray-300 p-4 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        
+                        <div class="flex flex-col items-center">
+                            <button type="submit"
+                                class="bg-yellow-500 text-white px-4 py-3 rounded-lg w-full hover:bg-yellow-600 transition">Add Player</button>
+                            <button type="button" id="closeModal"
+                                class="bg-red-600 text-white px-4 py-3 rounded-lg w-full mt-2 hover:bg-red-500 transition">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </header>
 </body>
 
 <main class="flex">
     <section class="flex-1 p-4 relative">
-
         <div class="absolute top-0 left-0 w-full h-full z-0">
             <img src="./src/assets/img/stadium_background.webp" alt="Stadium" class="w-full h-full object-cover" />
         </div>
 
-        <div class="col-span-3 grid grid-cols-3 gap-4 z-10 relative">
+        <div class="col-span-3 grid grid-cols-3 z-10 relative">
             <div class="flex justify-center items-center">
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg mx-auto" height="150" src="https://cdn.sofifa.net/players/238/794/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">LW</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">LW</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="Real Madrid Logo"
@@ -56,8 +80,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_ballon_dor.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/239/085/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">ST</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">ST</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/no.png" alt="Norway Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/players/239/085/25_120.png" alt="Manchester City Logo"
@@ -69,8 +93,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/231/747/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">RW</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">RW</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/fr.png" alt="France Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="Real Madrid Logo"
@@ -79,13 +103,13 @@
                 </div>
             </div>
         </div>
-        <div class="mt-2 col-span-3 grid grid-cols-3 gap-4 z-10 relative">
+        <div class="col-span-3 grid grid-cols-3 z-10 relative">
             <div class="flex justify-center items-center">
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/192/985/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">CM</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">CM</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/be.png" alt="Belgium Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/players/239/085/25_120.png" alt="Manchester City Logo"
@@ -97,8 +121,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/215/914/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">CDM</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">CDM</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/fr.png" alt="France Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/476/120.png" alt="Al-Ittihad Logo"
@@ -110,8 +134,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/177/003/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">CM</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">CM</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/hr.png" alt="Croatia Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="µReal Madrid Logo"
@@ -120,13 +144,13 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4 col-span-3 grid grid-cols-4 gap-4 z-10 relative">
+        <div class="col-span-3 grid grid-cols-4 z-10 relative">
             <div class="flex justify-center items-center">
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/234/396/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">LB</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">LB</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/ca.png" alt="Canada Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/503/120.png" alt="Bayern Munich Logo"
@@ -138,8 +162,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_ballon_dor.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/203/376/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">CB</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">CB</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/nl.png" alt="Netherlands Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/8/120.png" alt="Liverpool Logo"
@@ -151,8 +175,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/205/452/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold"> CB</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold"> CB</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/de.png" alt="Germany Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="Real Madrid Logo"
@@ -164,8 +188,8 @@
                 <div class="p-12 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/badge_gold.webp');">
                     <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/212/622/25_120.png"
-                        width="100" />
-                    <p class="text-center mt-6 text-black font-bold">RB</p>
+                        width="80" />
+                    <p class="text-center mt-8 text-black font-bold">RB</p>
                     <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/de.png" alt="Germany Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/503/120.png" alt="Bayern Munich  Logo"
@@ -174,12 +198,12 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 col-span-3 flex justify-center items-center z-10 relative">
+        <div class=" col-span-3 flex justify-center items-center z-10 relative">
             <div class="p-12 rounded-lg relative bg-cover bg-center"
                 style="background-image: url('./src/assets/img/badge_gold.webp');">
                 <img class="rounded-lg" height="150" src="https://cdn.sofifa.net/players/200/389/25_120.png"
-                    width="100" />
-                <p class="text-center mt-6 text-black font-bold"> GK </p>
+                    width="80" />
+                <p class="text-center mt-8 text-black font-bold"> GK </p>
                 <div class="flex justify-center items-center mt-2">
                     <img src="https://cdn.sofifa.net/flags/si.png" alt="Slovenia Flag" class="w-6 h-4 mx-1" />
                     <img src="https://cdn.sofifa.net/meta/team/7980/120.png" alt="Atletico Madrid Logo"
@@ -196,10 +220,112 @@
                 <select class="bg-gray-700 text-white p-2 w-full rounded mb-2">
                     <option>4-3-3(2)</option>
                 </select>
+                <div class=>
+                    <h2 class="text-xl font-bold mb-4 text-center">Remplacement</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2">
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> ST </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/pt.png" alt="Portugal Flag"
+                                    class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/2506/120.png" alt="Al Nassr Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/235/212/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> RB </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/ma.png" alt="Morocco Flag"
+                                    class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/591/120.png" alt="Paris Saint-Germain Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/212/198/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> CM </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/pt.png" alt="Portugal Flag"
+                                    class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/14/120.png" alt="Manchester United Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src=https://cdn.sofifa.net/players/231/410/25_120.png alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/ma.png" alt="Morocco Flag"
+                                    class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="Real Madrid Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/192/985/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> RW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/eg.png" alt="Egypt Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/8/120.png" alt="Liverpool Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/230/621/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> GK </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/it.png" alt="Italy Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/591/120.png" alt="Paris Saint-Germain Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+                        <div class="p-12 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <img src="https://cdn.sofifa.net/players/236/401/25_120.png" alt="Sub Player"
+                                class="h-16 w-16 object-contain">
+                            <p class="text-center mt-6 text-black font-bold"> LB </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/ma.png" alt="Morocco Flag"
+                                    class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/14/120.png" alt="Manchester United Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </aside>
 </main>
+<script src="script.js"></script>
+
 </body>
 
 </html>
