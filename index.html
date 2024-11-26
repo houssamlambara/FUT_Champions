@@ -28,7 +28,7 @@
         <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-70 hidden z-50">
             <div class="flex items-center justify-center h-full">
                 <div class="bg-gray-300 p-8 rounded-lg shadow-xl max-w-sm w-full">
-                    <form id="playerForm" class="overflow-y-scroll max-h-[500px]">
+                    <form id="playerForm">
 
                         <label for="Name" class="block text-black mb-2">Player Name</label>
                         <input type="text" id="Name" name="Name"
@@ -81,14 +81,14 @@
         </div>
 
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
-                    <div class="flex justify-center text-green-500 text-2xl">+</div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
+                    <div id="" class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">LW</div>
-            
+
                     <!-- <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                         <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="Real Madrid Logo"
@@ -97,111 +97,103 @@
                 </div>
             </div>
 
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">ST</div>
-
                 </div>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">RW</div>
-
                 </div>
             </div>
         </div>
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">CM</div>
-
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center">
+            <div class="mt-28 flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">CDM</div>
-
                 </div>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">CM</div>
-
                 </div>
             </div>
         </div>
         <div class="col-span-3 grid grid-cols-4 z-10 relative">
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">LB</div>
-
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center">
+            <div class="mt-28 flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
+                    <div class="flex justify-center text-green-500 text-2xl">+</div>
+
+                    <div class="text-white text-center mt-2">CB</div>
+                </div>
+            </div>
+            <div class="mt-28 flex justify-center items-center" id="carte">
+                <div class="p-8 rounded-lg relative bg-cover bg-center"
+                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">CB</div>
 
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center">
+            <div class="flex justify-center items-center" id="carte">
                 <div class="p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
-                    <div class="flex justify-center text-green-500 text-2xl">+</div>
-
-                    <div class="text-white text-center mt-2">CB</div>
-
-                </div>
-            </div>
-            <div class="flex justify-center items-center">
-                <div class="p-8 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center text-green-500 text-2xl">+</div>
 
                     <div class="text-white text-center mt-2">RB</div>
-
                 </div>
             </div>
         </div>
         <div class=" col-span-3 flex justify-center items-center z-10 relative">
-            <div class="p-8 rounded-lg relative bg-cover bg-center"
-                style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
-                <div class="rounded-lg mx-auto h-20 w-20" ></div>
-                <div class="flex justify-center text-green-500 text-2xl">+</div>
+            <div class="flex justify-center items-center" id="carte">
+                <div class="p-8 rounded-lg relative bg-cover bg-center"
+                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
+                    <div class="flex justify-center text-green-500 text-2xl">+</div>
 
-                <div class="text-white text-center mt-2">GK</div>
-
+                    <div class="text-white text-center mt-2">GK</div>
+                </div>
             </div>
-        </div>
     </section>
 
     <aside class="w-1/4 p-4 bg-gray-800">
@@ -211,13 +203,16 @@
                 <select class="bg-gray-700 text-white p-2 w-full rounded mb-2">
                     <option>4-3-3(2)</option>
                 </select>
-                <div class=>
+                <div>
                     <h2 class="text-xl font-bold mb-4 text-center">Remplacement</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
                         <div class="p-8 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
                             <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
@@ -225,92 +220,106 @@
                                     class="w-6 h-6 mx-1" />
                             </div>
                         </div>
+
                         <div class="p-8 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
-                            <p class="text-center mt-6 text-black font-bold"> ST </p>
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/pt.png" alt="Portugal Flag"
-                                    class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/2506/120.png" alt="Al Nassr Logo"
-                                    class="w-6 h-6 mx-1" />
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
                             </div>
-                        </div>
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/235/212/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
-                            <p class="text-center mt-6 text-black font-bold"> RB </p>
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/ma.png" alt="Morocco Flag"
-                                    class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/591/120.png" alt="Paris Saint-Germain Logo"
-                                    class="w-6 h-6 mx-1" />
-                            </div>
-                        </div>
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/212/198/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
-                            <p class="text-center mt-6 text-black font-bold"> CM </p>
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/pt.png" alt="Portugal Flag"
-                                    class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/14/120.png" alt="Manchester United Logo"
-                                    class="w-6 h-6 mx-1" />
-                            </div>
-                        </div>
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src=https://cdn.sofifa.net/players/231/410/25_120.png alt="Sub Player"
-                                class="h-16 w-16 object-contain">
                             <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/ma.png" alt="Morocco Flag"
-                                    class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/3468/120.png" alt="Real Madrid Logo"
-                                    class="w-6 h-6 mx-1" />
-                            </div>
-                        </div>
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/192/985/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
-                            <p class="text-center mt-6 text-black font-bold"> RW </p>
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/eg.png" alt="Egypt Flag" class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/8/120.png" alt="Liverpool Logo"
-                                    class="w-6 h-6 mx-1" />
-                            </div>
-                        </div>
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/230/621/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
-                            <p class="text-center mt-6 text-black font-bold"> GK </p>
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/it.png" alt="Italy Flag" class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/591/120.png" alt="Paris Saint-Germain Logo"
-                                    class="w-6 h-6 mx-1" />
-                            </div>
-                        </div>
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                            <img src="https://cdn.sofifa.net/players/236/401/25_120.png" alt="Sub Player"
-                                class="h-16 w-16 object-contain">
-                            <p class="text-center mt-6 text-black font-bold"> LB </p>
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/ma.png" alt="Morocco Flag"
-                                    class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/14/120.png" alt="Manchester United Logo"
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
                                     class="w-6 h-6 mx-1" />
                             </div>
                         </div>
 
+                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+
+                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+
+                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+
+                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+
+                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-6 mx-1" />
+                            </div>
+                        </div>
+
+                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                            style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex justify-center items-center">
+                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
+                                    class="h-16 w-16 object-contain">
+                            </div>
+                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+                            <div class="flex justify-center items-center mt-2">
+                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
+                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
+                                    class="w-6 h-4 mx-1" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </aside>
