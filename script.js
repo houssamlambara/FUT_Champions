@@ -47,22 +47,46 @@ playercard.addEventListener("submit", function(event){
 
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "p-2");
-    newcard.innerHTML =`
-    <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
-                            style="background-image: url('./src/assets/img/badge_gold.webp');">
-                        <div class="flex text-black text-center mt-2">${positionPlayer}</div>
-
-                            <div class="flex justify-center items-center">
-                                <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
-                                    class="h-16 w-16 object-contain">
-                            </div>
-
-                            <div class="flex justify-center items-center mt-2">
-                                <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
-                                <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
-                                    class="w-6 h-6 mx-1" />
-                            </div>
-                        </div>
+    newcard.innerHTML = `
+                <div class="relative flex justify-center items-center">
+        <img src="./src/assets/img/cart-1.png" class="object-contain" height="170" width="120" alt="">
+        <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="60" width="80">
+            <div class="absolute left-[23%] top-[20%] text-center text-white">
+                <div class="font-bold text-xs">97</div>
+                <div class="font-semibold text-[0.5rem]">${positionPlayer}</div>
+            </div>
+            <div class="absolute top-[64%] text-center text-white">
+                <div class="font-bold text-[0.5rem]">${playername}</div>
+                <div class="flex font-semibold text-[0.4rem] gap-1">
+                    <div class="flex flex-col">
+                        <span>PAC</span>
+                        <span>${PAC}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>SHO</span>
+                        <span>${SHO}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>PAS</span>
+                        <span>${PAS}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>DRI</span>
+                        <span>${DRI}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>DEF</span>
+                        <span>${DEF}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>PHY</span>
+                        <span>${PHY}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     `
     Remplacement.appendChild(newcard);
     playercard.reset();
