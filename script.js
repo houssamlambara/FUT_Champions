@@ -1,19 +1,24 @@
 const modal = document.getElementById('modal');
-const carte = document.getElementById('carte')
-const addPlayerButton = document.getElementById('addPlayerButton');
-const closeModalButton = document.getElementById('closeModal');
+const closeModalButton = document.getElementById('closeModalButton');
+const openModalButtons = document.querySelectorAll('.openModalButton');
 
-addPlayerButton.addEventListener('click', function () {
+const openModal = () => {
     modal.classList.remove('hidden');
-});
+};
 
-closeModalButton.addEventListener('click', function () {
+const closeModal = () => {
     modal.classList.add('hidden');
+};
+
+openModalButtons.forEach((button) => {
+    button.addEventListener('click', openModal);
 });
 
+closeModalButton.addEventListener('click', closeModal);
 
-
-
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
 
 
 
