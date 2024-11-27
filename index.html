@@ -8,68 +8,104 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 </head>
 
-<body class="bg-gray-900 text-white">
-    <header class="bg-black p-4 flex items-center justify-between">
-
-        <div class="flex items-center">
+<body class="bg-black text-white">
+    <header class="bg-black p-4 flex items-center">
+        <div class="flex">
             <img alt="Logo" class="ml-4 rounded-lg" height="100" src="./src/assets/img/Fut-champions.png" width="100" />
         </div>
 
-        <nav class="flex items-center justify-center space-x-8 font-bold">
+        <nav class="flex-grow flex items-center justify-center space-x-8 font-bold">
             <a class="text-white hover:text-green-400" href="#">Players</a>
             <a class="text-white hover:text-green-400" href="#">Squad Builder</a>
             <a class="text-white hover:text-green-400" href="#">Squads</a>
             <a class="text-white hover:text-green-400" href="#">Market</a>
         </nav>
+    </header>
 
-        <!-- MODAL -->
 
-        <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-70 hidden z-50">
-            <div class="flex items-center justify-center h-full">
-                <div class="bg-gray-300 p-8 rounded-lg shadow-xl max-w-sm w-full">
-                    <form id="playerForm">
+    <!-- MODAL -->
+    <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-70 hidden z-50">
+        <div class="flex items-center justify-center h-full">
 
-                        <label for="Name" class="block text-black mb-2">Player Name</label>
-                        <input type="text" id="Name" name="Name"
-                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+            <div class="bg-gray-300 p-8 rounded-lg shadow-xl max-w-sm w-full h-auto max-h-[90vh] overflow-y-auto"
+                style="background-image: url(./src/assets/img/stade-de-football-avec-brouillard-spectaculaire.png);background-repeat: no-repeat; background-position: center; background-size: cover;">
+                <form id="playerForm">
 
-                        <label for="Nationality" class="block text-black mb-2">Nationality</label>
-                        <input type="text" id="Nationality" name="Nationality"
-                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    <label for="Name" class="block text-black mb-2">Player Name</label>
+                    <input type="text" id="Name" name="Name"
+                        class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
 
-                        <label for="Team" class="block text-black mb-2">Club</label>
-                        <input type="text" id="Team" name="Team"
-                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    <label for="Nationality" class="block text-black mb-2">Nationality</label>
+                    <input type="text" id="Nationality" name="Nationality"
+                        class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
 
-                        <label for="positionPlayer" class="block text-black mb-2">Position</label>
-                        <select id="positionPlayer"
-                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300">
+                    <label for="Team" class="block text-black mb-2">Club</label>
+                    <input type="text" id="Team" name="Team"
+                        class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
 
-                            <option value="" selected disabled>Choose a position</option>
-                            <option value="GK">Goalkeeper (GK)</option>
-                            <option value="CB">Center Back (CB)</option>
-                            <option value="LB">Left Back (LB)</option>
-                            <option value="RB">Right Back (RB)</option>
-                            <option value="CDM">Defensive Midfielder (CDM)</option>
-                            <option value="CM">Central Midfielder (CM)</option>
-                            <option value="RW">Right Winger (RW)</option>
-                            <option value="LW">Left Winger (LW)</option>
-                            <option value="ST">Striker (ST)</option>
-                        </select>
-                        <!-- <div id="statistique" class="mt-6 flex flex-col gap-2">
-                        </div> -->
+                    <label for="positionPlayer" class="block text-black mb-2">Position</label>
+                    <select id="positionPlayer"
+                        class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300">
+                        <option value="" selected disabled>Choose a position</option>
+                        <option value="GK">Goalkeeper (GK)</option>
+                        <option value="CB">Center Back (CB)</option>
+                        <option value="LB">Left Back (LB)</option>
+                        <option value="RB">Right Back (RB)</option>
+                        <option value="CDM">Defensive Midfielder (CDM)</option>
+                        <option value="CM">Central Midfielder (CM)</option>
+                        <option value="RW">Right Winger (RW)</option>
+                        <option value="LW">Left Winger (LW)</option>
+                        <option value="ST">Striker (ST)</option>
+                    </select>
 
-                        <div class="flex flex-col items-center">
-                            <button type="submit"
-                                class="bg-yellow-500 text-white px-4 py-3 rounded-lg w-full hover:bg-yellow-600 transition">Add
-                                Player</button>
-                            <button type="button" id="closeModalButton"
-                                class="bg-red-600 text-white px-4 py-3 rounded-lg w-full mt-2 hover:bg-red-500 transition">Cancel</button>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="PAC" class="block text-black mb-2">PAC</label>
+                            <input type="number" id="PAC" name="PAC" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
                         </div>
-                    </form>
-                </div>
+                        <div>
+                            <label for="SHO" class="block text-black mb-2">SHO</label>
+                            <input type="number" id="SHO" name="SHO" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="PAS" class="block text-black mb-2">PAS</label>
+                            <input type="number" id="PAS" name="PAS" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="DRI" class="block text-black mb-2">DRI</label>
+                            <input type="number" id="DRI" name="DRI" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="DEF" class="block text-black mb-2">DEF</label>
+                            <input type="number" id="DEF" name="DEF" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="PHY" class="block text-black mb-2">PHY</label>
+                            <input type="number" id="PHY" name="PHY" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <button type="submit"
+                            class="bg-yellow-500 text-white px-4 py-3 rounded-lg w-full hover:bg-yellow-600 transition">Add
+                            Player</button>
+                        <button type="button" id="closeModalButton"
+                            class="bg-red-600 text-white px-4 py-3 rounded-lg w-full mt-2 hover:bg-red-500 transition">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+
+
+    <!-- <div id="statistique" class="mt-6 flex flex-col gap-2"></div> -->
+
     </header>
 </body>
 
@@ -82,12 +118,13 @@
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">LW</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">LW</div>
 
                     <!-- <div class="flex justify-center items-center mt-2">
                         <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
@@ -100,136 +137,151 @@
 
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <p class="flex text-white text-center mt-2">ST</p>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">ST</div>
                 </div>
             </div>
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">RW</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
 
-                    <div class="text-white text-center mt-2">RW</div>
                 </div>
             </div>
         </div>
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">CM</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
 
-                    <div class="text-white text-center mt-2">CM</div>
                 </div>
             </div>
             <div class="mt-28 flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">CDM</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">CDM</div>
                 </div>
             </div>
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">CM</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">CM</div>
                 </div>
             </div>
         </div>
         <div class="col-span-3 grid grid-cols-4 z-10 relative">
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">LB</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">LB</div>
                 </div>
             </div>
             <div class="mt-28 flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">CB</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">CB</div>
                 </div>
             </div>
             <div class="mt-28 flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">CB</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">CB</div>
 
                 </div>
             </div>
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">RB</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">RB</div>
                 </div>
             </div>
         </div>
         <div class=" col-span-3 flex justify-center items-center z-10 relative">
             <div class="flex justify-center items-center" id="carte">
                 <div class="p-6 rounded-lg relative bg-cover bg-center"
-                    style="background-image: url('./src/assets/img/placeholder-card-normal.webp');">
+                    style="background-image: url('./src/assets/img/cart-1.png');">
+                    <div class="flex text-white text-center mt-2">GK</div>
+
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="openModalButton text-green-500 text-2xl">+</button>
                     </div>
-                    <div class="text-white text-center mt-2">GK</div>
                 </div>
             </div>
     </section>
 
-    <aside class="w-1/4 p-4 bg-gray-800">
+    <section class="w-1/4 p-4 bg-gray-800">
         <div class="space-y-4">
             <div class="mb-4">
                 <div class="flex justify-center rounded-lg">
-                    <button class="openModalButton bg-green-600 text-white p-4 rounded-lg" id="addPlayerButton">Add Player</button>
+                    <button class="openModalButton bg-green-600 text-white p-4 rounded-lg" id="addPlayerButton">Add
+                        Player</button>
                 </div>
                 <label class="block mb-2">Squad info</label>
                 <select class="bg-gray-700 text-white p-2 w-full rounded mb-2">
                     <option>4-3-3(2)</option>
                 </select>
                 <div>
+                    <!-- REMPLACEMENT -->
+
                     <h2 class="text-xl font-bold mb-4 text-center">Remplacement</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                         <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
+
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -239,11 +291,12 @@
 
                         <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/212/622/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -253,11 +306,12 @@
 
                         <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/177/003/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -265,13 +319,14 @@
                             </div>
                         </div>
 
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                        <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/231/410/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -279,13 +334,14 @@
                             </div>
                         </div>
 
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                        <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -293,13 +349,14 @@
                             </div>
                         </div>
 
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                        <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -307,13 +364,14 @@
                             </div>
                         </div>
 
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                        <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -321,13 +379,14 @@
                             </div>
                         </div>
 
-                        <div class="p-8 rounded-lg relative bg-cover bg-center"
+                        <div class="p-6 rounded-lg relative bg-cover bg-center"
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
+                            <div class="flex text-black text-center mt-2">RW</div>
+
                             <div class="flex justify-center items-center">
                                 <img src="https://cdn.sofifa.net/players/190/871/25_120.png" alt="Sub Player"
                                     class="h-16 w-16 object-contain">
                             </div>
-                            <p class="text-center mt-6 text-black font-bold"> LW </p>
                             <div class="flex justify-center items-center mt-2">
                                 <img src="https://cdn.sofifa.net/flags/br.png" alt="Brazil Flag" class="w-6 h-4 mx-1" />
                                 <img src="https://cdn.sofifa.net/meta/team/7011/120.png" alt="Al-Hilal Logo"
@@ -338,7 +397,7 @@
                 </div>
             </div>
         </div>
-    </aside>
+    </section>
 </main>
 <script src="script.js"></script>
 
