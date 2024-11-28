@@ -28,6 +28,24 @@ listeCarte.forEach((carte) => {
     })
 })
 
+// Sélection des éléments HTML nécessaires
+const positionPlayer = document.getElementById('positionPlayer');
+const GKStats = document.getElementById('GKStats'); // Section des stats du gardien
+const fieldPlayerStats = document.querySelector('.grid.grid-cols-2.gap-4'); // Section des stats des joueurs de champ
+
+// Gestion de l'affichage des statistiques en fonction de la position sélectionnée
+positionPlayer.addEventListener('change', function () {
+    if (this.value == 'GK') {
+        // Si la position est Goalkeeper, afficher les stats GK et cacher les stats des joueurs de champ
+        GKStats.classList.remove('hidden');
+        fieldPlayerStats.classList.add('hidden');
+    } else {
+        // Si la position est autre, afficher les stats des joueurs de champ et cacher les stats GK
+        GKStats.classList.add('hidden');
+        fieldPlayerStats.classList.remove('hidden');
+    }
+});
+
 let players = [];
 
 playercard.addEventListener("submit", function (event) {
@@ -44,6 +62,14 @@ playercard.addEventListener("submit", function (event) {
     let DEF = document.getElementById("DEF").value;
     let PHY = document.getElementById("PHY").value;
 
+    // Statistiques spécifiques au gardien
+    let DIV = document.getElementById("DIV").value;
+    let HAN = document.getElementById("HAN").value;
+    let KIC = document.getElementById("KIC").value;
+    let REF = document.getElementById("REF").value;
+    let SPD = document.getElementById("SPD").value;
+    let POS = document.getElementById("POS").value;
+
     let country = {
         BR: "https://cdn.sofifa.net/flags/br.png",
         FR: "https://cdn.sofifa.net/flags/fr.png",
@@ -58,7 +84,7 @@ playercard.addEventListener("submit", function (event) {
     };
 
     let club = {
-        team1: "https://cdn.sofifa.net/meta/team/239235/120.png",
+        team1: "https://cdn.sofifa.net/meta/team/7980/120.png",
         team2: "https://cdn.sofifa.net/meta/team/2506/120.png",
         team3: "https://cdn.sofifa.net/meta/team/9/120.png",
         team4: "https://cdn.sofifa.net/meta/team/3468/120.png",
@@ -72,7 +98,7 @@ playercard.addEventListener("submit", function (event) {
     newcard.classList.add("border-md", "border-black", "p-2");
     newcard.innerHTML = `
                 <div class="relative flex justify-center items-center">
-        <img src="./src/assets/img/cart-1.png" class="object-contain" height="150" width="160" alt="">
+        <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
             <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
             <div class="absolute left-[15%] top-[15%] text-center text-white">
@@ -80,8 +106,8 @@ playercard.addEventListener("submit", function (event) {
                 <div class="font-semibold text-[0.5rem]">${positionPlayer}</div>
             </div>
             <div class="absolute top-[60%] text-center text-white">
-                <div class="font-bold text-[0.7rem]">${playername}</div>
-                <div class="flex font-semibold text-[0.6rem] gap-1">
+                <div class="font-bold text-[0.8rem]">${playername}</div>
+                <div class="flex font-bold text-[0.6rem] gap-1">
 
                     <div class="flex flex-col">
                         <span>PAC</span>
@@ -108,7 +134,7 @@ playercard.addEventListener("submit", function (event) {
                         <span>${PHY}</span>
                     </div>
                 </div>
-                <div class="flex justify-center items-center mt-1.5">
+                <div class="flex justify-center items-center mt-1">
                         <img src="${country[Nationality]}" alt="France Flag" class="w-4 h-3 mx-1" />
                         <img src="${club[Team]}" alt="Real Madrid Logo" class="w-4 h-4 mx-1" />
                     </div>  
@@ -123,7 +149,7 @@ playercard.addEventListener("submit", function (event) {
 });
 
 
-//  positionPlayer.addEventListener('change',()=>{
+// positionPlayer.addEventListener('change',()=>{
 //     if(positionPlayer.value=="GK")
 //     {
 //         statistique.innerHTML=`
@@ -162,3 +188,4 @@ playercard.addEventListener("submit", function (event) {
 //         `
 //     }
 // })
+
