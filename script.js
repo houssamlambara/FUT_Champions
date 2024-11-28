@@ -44,6 +44,29 @@ playercard.addEventListener("submit", function (event) {
     let DEF = document.getElementById("DEF").value;
     let PHY = document.getElementById("PHY").value;
 
+    let country = {
+        BR: "https://cdn.sofifa.net/flags/br.png",
+        FR: "https://cdn.sofifa.net/flags/fr.png",
+        ARG:"https://cdn.sofifa.net/flags/ar.png",
+        MR:"https://cdn.sofifa.net/flags/ma.png",
+        EN:"https://cdn.sofifa.net/flags/gb-eng.png",
+        IT:"https://cdn.sofifa.net/flags/it.png",
+        PR:"https://cdn.sofifa.net/flags/pt.png",
+        GR:"https://cdn.sofifa.net/flags/de.png",
+        ND:"https://cdn.sofifa.net/flags/nl.png",
+        BL:"https://cdn.sofifa.net/flags/be.png",
+    };
+
+    let club = {
+        team1: "https://cdn.sofifa.net/meta/team/239235/120.png",
+        team2: "https://cdn.sofifa.net/meta/team/2506/120.png",
+        team3: "https://cdn.sofifa.net/meta/team/9/120.png",
+        team4: "https://cdn.sofifa.net/meta/team/3468/120.png",
+        team5: "https://cdn.sofifa.net/meta/team/503/120.png",
+        team6: "https://cdn.sofifa.net/meta/team/7011/120.png",
+        team7: "https://cdn.sofifa.net/meta/team/14/120.png",
+    };
+
 
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "p-2");
@@ -86,8 +109,8 @@ playercard.addEventListener("submit", function (event) {
                     </div>
                 </div>
                 <div class="flex justify-center items-center mt-1.5">
-                        <img src="https://cdn.sofifa.net/flags/fr.png" alt="France Flag" class="w-4 h-3 mx-1" />
-                        <img src="https://cdn.sofifa.net/meta/team/9/120.png" alt="Real Madrid Logo" class="w-4 h-4 mx-1" />
+                        <img src="${country[Nationality]}" alt="France Flag" class="w-4 h-3 mx-1" />
+                        <img src="${club[Team]}" alt="Real Madrid Logo" class="w-4 h-4 mx-1" />
                     </div>  
             </div>
         </div>
