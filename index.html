@@ -22,7 +22,6 @@
         </nav>
     </header>
 
-
     <!-- MODAL -->
     <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-70 hidden z-50">
         <div class="flex items-center justify-center h-full">
@@ -91,6 +90,40 @@
                         </div>
                     </div>
 
+                    <div id="gkStats" class="grid grid-cols-2 gap-4 hidden">
+                        <div>
+                            <label for="DIV" class="block text-black mb-2">DIV</label>
+                            <input type="number" id="DIV" name="DIV" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="HAN" class="block text-black mb-2">HAN</label>
+                            <input type="number" id="HAN" name="HAN" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="KIC" class="block text-black mb-2">KIC</label>
+                            <input type="number" id="KIC" name="KIC" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="REF" class="block text-black mb-2">REF</label>
+                            <input type="number" id="REF" name="REF" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="SPD" class="block text-black mb-2">SPD</label>
+                            <input type="number" id="SPD" name="SPD" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                        <div>
+                            <label for="POS" class="block text-black mb-2">POS</label>
+                            <input type="number" id="POS" name="POS" min="20" max="99"
+                                class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                        </div>
+                    </div>
+
+
                     <div class="flex flex-col items-center">
                         <button type="submit"
                             class="bg-yellow-500 text-white px-4 py-3 rounded-lg w-full hover:bg-yellow-600 transition">Add
@@ -117,7 +150,7 @@
 
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">LW</div>
 
@@ -136,7 +169,7 @@
             </div>
 
             <div class="flex justify-center items-center">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <p class="flex text-white text-center mt-2">ST</p>
 
@@ -147,7 +180,7 @@
                 </div>
             </div>
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">RW</div>
 
@@ -161,7 +194,7 @@
         </div>
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">CM</div>
 
@@ -173,7 +206,7 @@
                 </div>
             </div>
             <div class="mt-28 flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">CDM</div>
 
@@ -184,7 +217,7 @@
                 </div>
             </div>
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">CM</div>
 
@@ -197,7 +230,7 @@
         </div>
         <div class="col-span-3 grid grid-cols-4 z-10 relative">
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">LB</div>
 
@@ -208,7 +241,7 @@
                 </div>
             </div>
             <div class="mt-28 flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">CB</div>
 
@@ -219,7 +252,7 @@
                 </div>
             </div>
             <div class="mt-28 flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">CB</div>
 
@@ -231,7 +264,7 @@
                 </div>
             </div>
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">RB</div>
 
@@ -244,7 +277,7 @@
         </div>
         <div class=" col-span-3 flex justify-center items-center z-10 relative">
             <div class="flex justify-center items-center" id="carte">
-                <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="flex text-white text-center mt-2">GK</div>
 
@@ -273,7 +306,7 @@
                     <h2 class="text-xl font-bold mb-4 text-center">Remplacement</h2>
                     <div id="Remplacement" class="grid grid-cols-1 sm:grid-cols-2">
 
-                        <!-- <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <!-- <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -289,7 +322,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -304,7 +337,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -319,7 +352,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -334,7 +367,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -349,7 +382,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -364,7 +397,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 
@@ -379,7 +412,7 @@
                             </div>
                         </div>
 
-                        <div class="carte p-6 rounded-lg relative bg-cover bg-center" 
+                        <div class="carte p-8 rounded-lg relative bg-cover bg-center" 
                             style="background-image: url('./src/assets/img/badge_gold.webp');">
                             <div class="flex text-black text-center mt-2">RW</div>
 

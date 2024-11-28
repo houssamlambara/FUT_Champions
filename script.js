@@ -1,16 +1,16 @@
 const modal = document.getElementById('modal');
 const closeModalButton = document.getElementById('closeModalButton');
 const openModalButtons = document.querySelectorAll('.openModalButton');
-const listeCarte=document.querySelectorAll('.carte');
+const listeCarte = document.querySelectorAll('.carte');
 let playercard = document.getElementById("playerForm");
 let Remplacement = document.getElementById("Remplacement");
 const openModal = () => {
     modal.classList.remove('hidden');
 };
 
-const closeModal = () => {
+function closeModal() {
     modal.classList.add('hidden');
-};
+}
 
 openModalButtons.forEach((button) => {
     button.addEventListener('click', openModal);
@@ -22,15 +22,15 @@ modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-listeCarte.forEach((carte)=>{
-    carte.addEventListener('click',()=>{
+listeCarte.forEach((carte) => {
+    carte.addEventListener('click', () => {
         afficherListePlayer(carte);
     })
 })
 
-let players=[];
+let players = [];
 
-playercard.addEventListener("submit", function(event){
+playercard.addEventListener("submit", function (event) {
     event.preventDefault();
 
     let playername = document.getElementById("Name").value;
@@ -43,22 +43,23 @@ playercard.addEventListener("submit", function(event){
     let DRI = document.getElementById("DRI").value;
     let DEF = document.getElementById("DEF").value;
     let PHY = document.getElementById("PHY").value;
-    
+
 
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "p-2");
     newcard.innerHTML = `
                 <div class="relative flex justify-center items-center">
-        <img src="./src/assets/img/cart-1.png" class="object-contain" height="170" width="120" alt="">
+        <img src="./src/assets/img/cart-1.png" class="object-contain" height="150" width="160" alt="">
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="60" width="80">
-            <div class="absolute left-[23%] top-[20%] text-center text-white">
+            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
+            <div class="absolute left-[15%] top-[15%] text-center text-white">
                 <div class="font-bold text-xs">97</div>
                 <div class="font-semibold text-[0.5rem]">${positionPlayer}</div>
             </div>
-            <div class="absolute top-[64%] text-center text-white">
-                <div class="font-bold text-[0.5rem]">${playername}</div>
-                <div class="flex font-semibold text-[0.4rem] gap-1">
+            <div class="absolute top-[60%] text-center text-white">
+                <div class="font-bold text-[0.7rem]">${playername}</div>
+                <div class="flex font-semibold text-[0.6rem] gap-1">
+
                     <div class="flex flex-col">
                         <span>PAC</span>
                         <span>${PAC}</span>
@@ -84,6 +85,10 @@ playercard.addEventListener("submit", function(event){
                         <span>${PHY}</span>
                     </div>
                 </div>
+                <div class="flex justify-center items-center mt-1.5">
+                        <img src="https://cdn.sofifa.net/flags/fr.png" alt="France Flag" class="w-4 h-3 mx-1" />
+                        <img src="https://cdn.sofifa.net/meta/team/9/120.png" alt="Real Madrid Logo" class="w-4 h-4 mx-1" />
+                    </div>  
             </div>
         </div>
     </div>
