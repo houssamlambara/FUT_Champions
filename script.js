@@ -28,7 +28,6 @@ listeCarte.forEach((carte) => {
     })
 })
 
-
 const positionPlayer = document.getElementById('positionPlayer');
 const GKStats = document.getElementById('GKStats'); 
 const fieldPlayerStats = document.querySelector('.grid.grid-cols-2.gap-4'); 
@@ -36,17 +35,13 @@ const fieldPlayerStats = document.querySelector('.grid.grid-cols-2.gap-4');
 
 positionPlayer.addEventListener('change', function () {
     if (this.value === 'GK') {
-
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
     } else {
-
         GKStats.classList.add('hidden');
         fieldPlayerStats.classList.remove('hidden');
     }
 });
-
-let players = [];
 
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -68,6 +63,18 @@ playercard.addEventListener("submit", function (event) {
     let REF = document.getElementById("REF").value;
     let SPD = document.getElementById("SPD").value;
     let POS = document.getElementById("POS").value;
+
+    // let playerImages = {
+    //     "player1":"https://cdn.sofifa.net/players/190/871/25_120.png",
+    //     "player2":"https://cdn.sofifa.net/players/020/801/25_120.png",
+    //     "player3":"https://cdn.sofifa.net/players/192/985/25_120.png",
+    //     "player4":"https://cdn.sofifa.net/players/231/747/25_120.png",
+    //     "player5":"https://cdn.sofifa.net/players/203/376/25_120.png",
+    //     "player6":"https://cdn.sofifa.net/players/158/023/25_120.png",
+    //     "player7":"https://cdn.sofifa.net/players/205/452/25_120.png",
+    //     "player8":"https://cdn.sofifa.net/players/212/622/25_120.png",
+    //     "player9":"https://cdn.sofifa.net/players/192/985/25_120.png",
+    // }
 
     let country = {
         BR: "https://cdn.sofifa.net/flags/br.png",
