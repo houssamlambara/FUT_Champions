@@ -41,7 +41,7 @@ titulaireButton.forEach(button => {
     };
 });
 
-function listplayer() {
+function listplayer(){
     substitutePlayers.innerHTML = ''
     newPlayers.forEach(element => {
         substitutePlayers.innerHTML += playercardUI(element)
@@ -87,9 +87,9 @@ positionPlayer.addEventListener('change', function () {
     }
 });
 
-function playercardUI(addedplayer) {
-    return `
-    <div class="relative flex justify-center items-center" >
+function playercardUI(addedplayer){
+    return`
+    <div class="relative flex justify-center items-center" onclick='selectedPlayer(${JSON.stringify(addedplayer)})'>
                 <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
                 <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
                 <img src="${addedplayer.photo}" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
@@ -129,12 +129,16 @@ function playercardUI(addedplayer) {
                         <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
                         <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
                     </div>
-                    
+            
+
         </div>          
-        
              </div>
+                     
+
             </div>
         `;
+        
+
 }
 
 function selectedPlayer(addedplayer) {
@@ -230,7 +234,7 @@ playercard.addEventListener("submit", function (event) {
 
     let randomPlayerKey = getRandomPlayerKey(playerImages);
 
-    let addedplayer =
+    let addedplayer = 
     {
         "name": playername,
         "photo": playerImages[randomPlayerKey],
@@ -250,7 +254,7 @@ playercard.addEventListener("submit", function (event) {
 
 
     jsonPlayers.push(
-        addedplayer
+      addedplayer  
     )
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "hover:scale-110", "transition", "duration-200", "cursor-pointer");
