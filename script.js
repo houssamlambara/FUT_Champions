@@ -87,14 +87,15 @@ positionPlayer.addEventListener('change', function () {
     }
 });
 
+
+
 function playercardUI(addedplayer){
     return`
     <div class="relative flex justify-center items-center" onclick='selectedPlayer(${JSON.stringify(addedplayer)})'>
                 <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
                 <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                <img src="${addedplayer.photo}" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
-                    <div class="absolute left-[15%] top-[15%] text-center text-white">
-                        <div class="font-bold text-xs">${addedplayer.rating}</div>
+                <img src="${addedplayer.photo}" class="absolute object-contain mb-16" height="90" width="100">
+                <div class="absolute" style="top: 15%; left: 15%; transform: translate(0%, 0); text-align: center; color: white;">                        <div class="font-bold text-xs">${addedplayer.rating}</div>
                         <div class="font-semibold text-[0.5rem]">${addedplayer.position}</div>
                     </div>
                     <div class="absolute top-[60%] text-center text-white">
@@ -129,8 +130,7 @@ function playercardUI(addedplayer){
                         <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
                         <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
                     </div>
-            
-
+           
         </div>          
              </div>
                      
@@ -259,12 +259,16 @@ playercard.addEventListener("submit", function (event) {
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "hover:scale-110", "transition", "duration-200", "cursor-pointer");
 
+
+    // <i class="fas fa-edit absolute top-2 right-2 text-white cursor-pointer" title="Edit"></i>
+
     // CONDITION position du joueur
     if (positionPlayer === "GK") {
         newcard.innerHTML = `
             <div class="relative flex justify-center items-center">
-                <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
+                <img src="#" height="150" width="160" alt="">
                 <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+            <i class="fas fa-trash-alt absolute top-5 right-8 text-red-600 cursor-pointer" title="Delete"></i>
                 <img src="${playerImages[randomPlayerKey]}" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
                     <div class="absolute left-[15%] top-[15%] text-center text-white">
                         <div class="font-bold text-xs">${moyenne}</div>
@@ -303,8 +307,7 @@ playercard.addEventListener("submit", function (event) {
                         <img src="${club[Team]}" alt="Team Logo" class="w-4 h-4 mx-1" />
                     </div>
             
-          <i class="fas fa-edit absolute top-2 right-2 text-white cursor-pointer" title="Edit"></i>
-            <i class="fas fa-trash-alt absolute top-2 right-10 text-red-500 cursor-pointer" title="Delete"></i>
+        
         </div>          
                 </div>
             </div>
