@@ -7,17 +7,51 @@ const listeCarte = document.querySelectorAll('.carte');
 let playercard = document.getElementById("playerForm");
 let Remplacement = document.getElementById("Remplacement");
 let titulaireModal = document.getElementById("Titulairemodal");
+let substitutePlayers = document.getElementById("substitutePlayers");
 let cancelModal = document.getElementById("cancelModal");
 
 
+let jsonPlayers;
+let newPlayers = [];
+
+
+fetch('./players.json')
+    .then(res => res.json())
+    .then(data => {
+        jsonPlayers = data.players;
+    })
+
 titulaireButton.forEach(button => {
-    button.onclick = function() {
+    button.onclick = function () {
         titulaireModal.style.display = "flex";
+        let role = button.innerHTML
+
+        jsonPlayers.forEach(element => {
+            console.log(element);
+            if (element.position == role) {
+
+
+                newPlayers.push(element);
+            }
+
+        });
+
+        listplayer()
+
     };
 });
 
-cancelModal.onclick = function(){
-        titulaireModal.style.display = "none";
+function listplayer() {
+    substitutePlayers.innerHTML = ''
+    newPlayers.forEach(element => {
+        substitutePlayers.innerHTML += playercardUI(element)
+    });
+}
+
+cancelModal.onclick = function () {
+
+    newPlayers = [];
+    titulaireModal.style.display = "none";
 }
 
 const openModal = () => {
@@ -38,12 +72,6 @@ modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-listeCarte.forEach((carte) => {
-    carte.addEventListener('click', () => {
-        afficherListePlayer(carte);
-    })
-})
-
 const positionPlayer = document.getElementById('positionPlayer');
 const GKStats = document.getElementById('GKStats');
 const fieldPlayerStats = document.querySelector('.grid.grid-cols-2.gap-4');
@@ -58,6 +86,63 @@ positionPlayer.addEventListener('change', function () {
         fieldPlayerStats.classList.remove('hidden');
     }
 });
+
+function playercardUI(addedplayer) {
+    return `
+    <div class="relative flex justify-center items-center" >
+                <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
+                <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                <img src="${addedplayer.photo}" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
+                    <div class="absolute left-[15%] top-[15%] text-center text-white">
+                        <div class="font-bold text-xs">${addedplayer.rating}</div>
+                        <div class="font-semibold text-[0.5rem]">${addedplayer.position}</div>
+                    </div>
+                    <div class="absolute top-[60%] text-center text-white">
+                        <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
+                        <div class="flex font-bold text-[0.6rem] gap-1">
+                            <div class="flex flex-col">
+                                <span>PAC</span>
+                                <span>${addedplayer.pace}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span>SHO</span>
+                                <span>${addedplayer.shooting}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span>PAS</span>
+                                <span>${addedplayer.passing}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span>DRI</span>
+                                <span>${addedplayer.dribbling}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span>DEF</span>
+                                <span>${addedplayer.defending}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span>PHY</span>
+                                <span>${addedplayer.physical}</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center mt-1">
+                        <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
+                        <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
+                    </div>
+                    
+        </div>          
+        
+             </div>
+            </div>
+        `;
+}
+
+function selectedPlayer(addedplayer) {
+    document.getElementById(addedplayer.position).innerHTML = playercardUI(addedplayer)
+    newPlayers = [];
+    titulaireModal.style.display = "none";
+}
+
 
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -85,15 +170,15 @@ playercard.addEventListener("submit", function (event) {
     );
 
     let playerImages = {
-        "player1": "https://cdn.sofifa.net/players/190/871/25_120.png",
-        "player2": "https://cdn.sofifa.net/players/020/801/25_120.png",
-        "player3": "https://cdn.sofifa.net/players/192/985/25_120.png",
-        "player4": "https://cdn.sofifa.net/players/231/747/25_120.png",
-        "player5": "https://cdn.sofifa.net/players/203/376/25_120.png",
-        "player6": "https://cdn.sofifa.net/players/158/023/25_120.png",
-        "player7": "https://cdn.sofifa.net/players/205/452/25_120.png",
-        "player8": "https://cdn.sofifa.net/players/212/622/25_120.png",
-        "player9": "https://cdn.sofifa.net/players/192/985/25_120.png",
+        player1: "https://cdn.sofifa.net/players/190/871/25_120.png",
+        player2: "https://cdn.sofifa.net/players/020/801/25_120.png",
+        player3: "https://cdn.sofifa.net/players/192/985/25_120.png",
+        player4: "https://cdn.sofifa.net/players/231/747/25_120.png",
+        player5: "https://cdn.sofifa.net/players/203/376/25_120.png",
+        player6: "https://cdn.sofifa.net/players/158/023/25_120.png",
+        player7: "https://cdn.sofifa.net/players/205/452/25_120.png",
+        player8: "https://cdn.sofifa.net/players/212/622/25_120.png",
+        player9: "https://cdn.sofifa.net/players/192/985/25_120.png",
     }
 
     let country = {
@@ -139,12 +224,34 @@ playercard.addEventListener("submit", function (event) {
     function getRandomPlayerKey(obj) {
         const keys = Object.keys(obj); // Récupère toutes les clés
         const randomIndex = Math.floor(Math.random() * keys.length); // Choisit un index aléatoire
+
         return keys[randomIndex]; // Retourne la clé correspondante
     }
 
     let randomPlayerKey = getRandomPlayerKey(playerImages);
 
+    let addedplayer =
+    {
+        "name": playername,
+        "photo": playerImages[randomPlayerKey],
+        "nationality": Nationality,
+        "flag": country[Nationality],
+        "club": Team,
+        "logo": club[Team],
+        "position": positionPlayer,
+        "rating": moyenne,
+        "pace": PAC,
+        "shooting": SHO,
+        "passing": PAS,
+        "dribbling": DRI,
+        "defending": DEF,
+        "physical": PHY,
+    }
 
+
+    jsonPlayers.push(
+        addedplayer
+    )
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "hover:scale-110", "transition", "duration-200", "cursor-pointer");
 
@@ -199,54 +306,7 @@ playercard.addEventListener("submit", function (event) {
             </div>
         `;
     } else {
-        newcard.innerHTML = `
-            <div class="relative flex justify-center items-center">
-                <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
-                <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
-                    <div class="absolute left-[15%] top-[15%] text-center text-white">
-                        <div class="font-bold text-xs">${moyenne}</div>
-                        <div class="font-semibold text-[0.5rem]">${positionPlayer}</div>
-                    </div>
-                    <div class="absolute top-[60%] text-center text-white">
-                        <div class="font-bold text-[0.8rem]">${playername}</div>
-                        <div class="flex font-bold text-[0.6rem] gap-1">
-                            <div class="flex flex-col">
-                                <span>PAC</span>
-                                <span>${PAC}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>SHO</span>
-                                <span>${SHO}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>PAS</span>
-                                <span>${PAS}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>DRI</span>
-                                <span>${DRI}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>DEF</span>
-                                <span>${DEF}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>PHY</span>
-                                <span>${PHY}</span>
-                            </div>
-                        </div>
-                        <div class="flex justify-center items-center mt-1">
-                        <img src="${country[Nationality]}" alt="Country Flag" class="w-4 h-3 mx-1" />
-                        <img src="${club[Team]}" alt="Team Logo" class="w-4 h-4 mx-1" />
-                    </div>
-            
-            <i class="fas fa-edit absolute top-2 right-2 text-white cursor-pointer" title="Edit"></i>
-            <i class="fas fa-trash-alt absolute top-2 right-10 text-red-500 cursor-pointer" title="Delete"></i>
-        </div>          
-             </div>
-            </div>
-        `;
+        newcard.innerHTML = playercardUI(addedplayer)
     }
 
     Remplacement.appendChild(newcard);
