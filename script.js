@@ -27,6 +27,7 @@ titulaireButton.forEach(button => {
         let role = button.innerHTML;
 
         jsonPlayers.forEach(element => {
+
             if (element.position == role) {
                 newPlayers.push(element);
             }
@@ -86,13 +87,16 @@ function playercardUI(addedplayer) {
     if (addedplayer.position === "GK") {
         return `
         <div class="relative flex justify-center items-center" onclick='selectedPlayer(${JSON.stringify(addedplayer)})'>
+                <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
+                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
+
             <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
                 ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
                 <div class="absolute object-contain" 
-                    style="top: 35%; left: 48%; transform: translate(-50%, -50%); height: 90px; width: 100px;">
-                    <div class="font-bold text-xs">${addedplayer.rating}</div>
-                    <div class="font-semibold text-[0.5rem]">${addedplayer.position}</div>
+                    style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">
+                    <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
+                    <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
                 </div>
                 <div class="absolute top-[60%] text-center text-white">
                     <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
@@ -127,19 +131,21 @@ function playercardUI(addedplayer) {
                         <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
                     </div>
                 </div>
-                <i class="fas fa-trash-alt absolute top-2 right-12 text-red-500 cursor-pointer" title="Delete">DELETE</i>
             </div>
         </div>`;
     } else {
         return `
         <div class="relative flex justify-center items-center" onclick='selectedPlayer(${JSON.stringify(addedplayer)})'>
+                <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
+                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
+
             <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
                 ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
                 <div class="absolute object-contain" 
-                    style="top: 35%; left: 48%; transform: translate(-50%, -50%); height: 90px; width: 100px;">                 
-                    <div class="font-bold text-xs">${addedplayer.rating}</div>
-                    <div class="font-semibold text-[0.5rem]">${addedplayer.position}</div>
+                    style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">                 
+                    <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
+                    <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
                 </div>
                 <div class="absolute top-[60%] text-center text-white">
                     <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
@@ -173,14 +179,12 @@ function playercardUI(addedplayer) {
                         <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
                         <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
                     </div>
-                    <i class="fas fa-trash-alt absolute top-2 right-12 text-red-500 cursor-pointer" title="Delete"></i>
+
                 </div>
             </div>
         </div>`;
     }
 }
-
-
 
 function selectedPlayer(addedplayer) {
     document.getElementById(addedplayer.position).innerHTML = playercardUI(addedplayer);
@@ -260,18 +264,18 @@ playercard.addEventListener("submit", function (event) {
     }
 
     Remplacement.addEventListener('click', (event) => {
-        if (event.target.classList.contains('fa-trash-alt')) { // Icône de suppression
+        if (event.target.classList.contains('fa-trash-alt')) { // Suppression
             deleteCard(event);
-        } else if (event.target.classList.contains('fa-edit')) { // Icône de modification
+        } else if (event.target.classList.contains('fa-edit')) { // Modification
             editCard(event);
         }
     });
 
     function getRandomPlayerKey(obj) {
         const keys = Object.keys(obj); // Récupère toutes les clés
-        const randomIndex = Math.floor(Math.random() * keys.length); // Choisit un index aléatoire
+        const randomIndex = Math.floor(Math.random() * keys.length);
 
-        return keys[randomIndex]; // Retourne la clé correspondante
+        return keys[randomIndex];
     }
 
     let randomPlayerKey = getRandomPlayerKey(playerImages);
@@ -291,6 +295,13 @@ playercard.addEventListener("submit", function (event) {
         "dribbling": DRI,
         "defending": DEF,
         "physical": PHY,
+
+        "diving": DIV,
+        "handling": HAN,
+        "kicking": KIC,
+        "reflexes": REF,
+        "speed": SPD,
+        "positioning": POS,
         "AddedManually": true // Attribut pour savoir si le joueur est ajouté manuellement
     };
 
@@ -301,55 +312,52 @@ playercard.addEventListener("submit", function (event) {
     )
     let newcard = document.createElement("div");
     newcard.classList.add("border-md", "border-black", "hover:scale-110", "transition", "duration-200", "cursor-pointer");
-
-
-
-    // CONDITION position du joueur
     if (positionPlayer === "GK") {
         newcard.innerHTML = `
             <div class="relative flex justify-center items-center">
+                 <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
+                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
+
                 <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
                 <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                <img src="${playerImages[randomPlayerKey]}" alt="Left ST" class="absolute object-contain mb-16" height="90" width="100">
-                    <div class="absolute left-[15%] top-[15%] text-center text-white">
-                        <div class="font-bold text-xs">${moyenne}</div>
-                        <div class="font-semibold text-[0.5rem]">${positionPlayer}</div>
+                    <div class="absolute left-[13%] top-[15%] text-center text-white">
+                        <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
+                        <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
                     </div>
                     <div class="absolute top-[60%] text-center text-white">
-                        <div class="font-bold text-[0.8rem]">${playername}</div>
+                        <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
                         <div class="flex font-bold text-[0.6rem] gap-1">
                             <div class="flex flex-col">
                                 <span>DIV</span>
-                                <span>${DIV}</span>
+                                <span>${addedplayer.diving}</span>
                             </div>
                             <div class="flex flex-col">
                                 <span>HAN</span>
-                                <span>${HAN}</span>
+                                <span>${addedplayer.handling}</span>
                             </div>
                             <div class="flex flex-col">
                                 <span>KIC</span>
-                                <span>${KIC}</span>
+                                <span>${addedplayer.kicking}</span>
                             </div>
                             <div class="flex flex-col">
                                 <span>REF</span>
-                                <span>${REF}</span>
+                                <span>${addedplayer.reflexes}</span>
                             </div>
                             <div class="flex flex-col">
                                 <span>SPD</span>
-                                <span>${SPD}</span>
+                                <span>${addedplayer.speed}</span>
                             </div>
                             <div class="flex flex-col">
                                 <span>POS</span>
-                                <span>${POS}</span>
+                                <span>${addedplayer.positioning}</span>
                             </div>
                         </div>
                         <div class="flex justify-center items-center mt-1">
-                        <img src="${country[Nationality]}" alt="Country Flag" class="w-4 h-3 mx-1" />
-                        <img src="${club[Team]}" alt="Team Logo" class="w-4 h-4 mx-1" />
-                    </div>
-                        <i class="fas fa-edit absolute top-2 right-2 text-white cursor-pointer" title="Edit"></i>
-        
-        </div>          
+                        <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
+                        <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
+                     </div>
+
+                 </div>          
                 </div>
             </div>
         `;
