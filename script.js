@@ -310,8 +310,6 @@ playercard.addEventListener("submit", function (event) {
         "AddedManually": true // Attribut pour savoir si le joueur est ajouté manuellement
     };
 
-
-
     jsonPlayers.push(
         addedplayer
     )
