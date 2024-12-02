@@ -75,6 +75,7 @@
                         <option value="RB">Right Back (RB)</option>
                         <option value="CDM">Defensive Midfielder (CDM)</option>
                         <option value="CM">Central Midfielder (CM)</option>
+                        <option value="CAM">Attacking Midfielders(CAM)</option>
                         <option value="RW">Right Winger (RW)</option>
                         <option value="LW">Left Winger (LW)</option>
                         <option value="ST">Striker (ST)</option>
@@ -169,11 +170,11 @@
                 <div class="flex justify-center items-center p-4 border-b">
                     <h3 class="text-lg font-bold text-green-500">Select Player to Line-UP</h3>
                 </div>
-                <div id="substitutePlayers" class="grid grid-cols-4 p-4 space-y-2 max-h-[500px] w-auto overflow-x-auto">
+                <div id="substitutePlayers" class="grid grid-cols-4 p-4 max-h-[500px] w-auto overflow-x-auto">
                     
                 </div>
                 <div class="flex justify-center p-4">
-                    <button id="cancelModal" class="bg-green-500 hover:bg-green-500 px-4 py-2 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Cancel</button>
+                    <button id="cancelModal" class="bg-green-500 hover:bg-green-500 px-2 py-2 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Cancel</button>
                 </div>
             </div>
         </div>
@@ -230,7 +231,7 @@
 
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center" id="CDM">
+            <div class="mt-28 flex justify-center items-center" role="CDM" id="CDM">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -239,18 +240,18 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center items-center"  id="CM">
+            <div class="flex justify-center items-center" role="CAM"  id="CAM">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
-                        <button class="mt-8 titulaire-btn text-green-500 text-2xl">CM</button>
+                        <button class="mt-8 titulaire-btn text-green-500 text-2xl">CAM</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-span-3 grid grid-cols-4 z-10 relative">
-            <div class="flex justify-center items-center" role="" id="LB">
+            <div class="flex justify-center items-center" role="LB" id="LB">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -259,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center" id="CB">
+            <div class="mt-28 flex justify-center items-center" role="CB" id="CB">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -268,7 +269,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center" id="CB">
+            <div class="mt-28 flex justify-center items-center" role="CB" id="CB">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -278,7 +279,7 @@
 
                 </div>
             </div>
-            <div class="flex justify-center items-center" role="" id="RB">
+            <div class="flex justify-center items-center" role="RB" id="RB">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -289,7 +290,7 @@
             </div>
         </div>
         <div class=" col-span-3 flex justify-center items-center z-10 relative">
-            <div class="flex justify-center items-center" role="" id="GK">
+            <div class="flex justify-center items-center" role="GK" id="GK">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>

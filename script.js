@@ -27,7 +27,6 @@ titulaireButton.forEach(button => {
         let role = button.innerHTML;
 
         jsonPlayers.forEach(element => {
-
             if (element.position == role) {
                 newPlayers.push(element);
             }
@@ -87,11 +86,11 @@ function playercardUI(addedplayer) {
     if (addedplayer.position === "GK") {
         return `
         <div class="relative flex justify-center items-center" onclick='selectedPlayer(${JSON.stringify(addedplayer)})'>
-                <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
-                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
-
+               
             <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+            <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
+                    <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
                 ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
                 <div class="absolute object-contain" 
                     style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">
@@ -136,11 +135,11 @@ function playercardUI(addedplayer) {
     } else {
         return `
         <div class="relative flex justify-center items-center" onclick='selectedPlayer(${JSON.stringify(addedplayer)})'>
-                <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
-                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
-
+    
             <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+            <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
+                    <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
                 ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
                 <div class="absolute object-contain" 
                     style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">                 
@@ -257,9 +256,9 @@ playercard.addEventListener("submit", function (event) {
     };
 
     function deleteCard(event) {
-        const card = event.target.closest('.border-md');
+        const card = event.target.closest('.border-md'); // Trouve l'élément parent de la poubelle (la carte)
         if (card) {
-            card.remove();
+            card.remove(); // Supprime la carte du joueur
         }
     }
 
@@ -295,7 +294,6 @@ playercard.addEventListener("submit", function (event) {
         "dribbling": DRI,
         "defending": DEF,
         "physical": PHY,
-
         "diving": DIV,
         "handling": HAN,
         "kicking": KIC,
@@ -315,11 +313,11 @@ playercard.addEventListener("submit", function (event) {
     if (positionPlayer === "GK") {
         newcard.innerHTML = `
             <div class="relative flex justify-center items-center">
-                 <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
-                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
 
                 <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
                 <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                    <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
+                    <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
                     <div class="absolute left-[13%] top-[15%] text-center text-white">
                         <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
                         <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
