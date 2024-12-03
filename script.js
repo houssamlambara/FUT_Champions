@@ -308,19 +308,6 @@ function playercardUI(addedplayer) {
 }
 
 function selectedPlayer(addedplayer) {
-    let addPlayer = document.getElementById(addedplayer.position);
-
-    let playerSlot = addPlayer.querySelector('.carte div');
-    if (playerSlot) {
-        playerSlot.innerHTML = playercardUI(addedplayer);
-    }
-
-    // Close the modal
-    titulaireModal.style.display = "none";
-    newPlayers = [];
-}
-
-function selectedPlayer(addedplayer) {
     let positions;
     if (addedplayer.position === 'CB') {
         positions = ['CB1', 'CB2'];
