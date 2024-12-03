@@ -208,6 +208,47 @@ function editPlayer(player) {
     modal.classList.remove('hidden');
 }
 
+function selectedPlayer(addedplayer) {
+    let positions;
+    if (addedplayer.position === 'CB') {
+        positions = ['CB1', 'CB2'];
+    } else {
+        positions = [addedplayer.position];
+    }
+
+    for (let pos of positions) {
+        let addPlayer = document.getElementById(pos);
+        if (!addPlayer) continue;
+
+        let playerSlot = addPlayer.querySelector('.carte div');
+        if (playerSlot) {
+            let hasPlayer = playerSlot.querySelector('.relative');
+            if (!hasPlayer) {
+                playerSlot.innerHTML = playercardUI(addedplayer);
+                titulaireModal.style.display = "none";
+                newPlayers = [];
+                return; 
+            }
+        }
+    }
+
+    if (addedplayer.position === 'CB') {
+        for (let pos of positions) {
+            let addPlayer = document.getElementById(pos);
+            if (!addPlayer) continue;
+
+            let playerSlot = addPlayer.querySelector('.carte div');
+            if (playerSlot) {
+                playerSlot.innerHTML = playercardUI(addedplayer);
+                break;
+            }
+        }
+    }
+
+    titulaireModal.style.display = "none";
+    newPlayers = [];
+}
+
 // Update the playercardUI function to include onclick handlers
 function playercardUI(addedplayer) {
     let playerImage = addedplayer.AddedManually ? '' : addedplayer.photo;
