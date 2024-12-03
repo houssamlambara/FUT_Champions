@@ -50,9 +50,6 @@ titulaireButton.forEach(button => {
     };
 });
 
-// Your existing variable declarations remain the same
-
-// Add these missing object definitions for the form
 const playerImages = {
     player1: "https://cdn.sofifa.net/players/190/871/25_120.png",
     player2: "https://cdn.sofifa.net/players/020/801/25_120.png",
@@ -160,6 +157,21 @@ function deletePlayer(player, cardElement) {
     if (newPlayerIndex > -1) {
         newPlayers.splice(newPlayerIndex, 1);
     }
+
+    // kawtar the card from DOM
+    // if (cardElement) {
+    //     console.log("cardElement trouvé");
+    //     console.log("ClassList Parent: ", cardElement.parentElement.classList);
+    //     // cardElement.remove()
+    //     cardElement.classList.add('hidden'); // Vérifiez si cela empêche l'affichage
+    
+    //     if (cardElement.parentElement) {
+    //         console.log("Parent trouvé");
+    
+    //         cardElement.parentElement.classList.add('w-16', 'h-16');
+    //         cardElement.parentElement.style.backgroundImage = "url('./src/assets/img/cart-1.png')";
+    //         cardElement.parentElement.style.backgroundSize = 'cover'; // S'assurer que l'image remplit l'élément
+    //     }
 
     // Remove the card from DOM
     if (cardElement) {
@@ -308,43 +320,23 @@ function playercardUI(addedplayer) {
 }
 
 function selectedPlayer(addedplayer) {
-    let positions;
+    // Trouver le conteneur correspondant à la position du joueur
+    let addPlayer = document.getElementById(addedplayer.position);
 
-    // Gestion spéciale pour CB (CB1 et CB2)
-    if (addedplayer.position === 'CB') {
-        positions = ['CB1', 'CB2'];
-    } else {
-        positions = [addedplayer.position];
-    }
+    // Supprimer la carte existante dans le slot du joueur
+    addPlayer.innerHTML = '';
 
-    for (let pos of positions) {
-        let addPlayer = document.getElementById(pos);
+    // Ajouter la nouvelle carte dans le slot du joueur
+    let playerSlot = document.createElement('div');
+    playerSlot.innerHTML = playercardUI(addedplayer);
+    addPlayer.appendChild(playerSlot);
 
-        if (addPlayer) {
-            // Vider le slot du joueur
-            addPlayer.innerHTML = '';
-
-            // Ajouter une nouvelle carte dans le slot
-            let playerSlot = document.createElement('div');
-            playerSlot.innerHTML = playercardUI(addedplayer);
-
-            addPlayer.appendChild(playerSlot);
-
-            // Fermer le modal des joueurs titulaires
-            titulaireModal.style.display = "none";
-
-            // Réinitialiser la liste des nouveaux joueurs
-            newPlayers = [];
-            return; // Arrêter après avoir ajouté le joueur
-        }
-    }
-
-    // Si aucune position disponible (pour CB), afficher un message
-    alert("Aucune position disponible pour ce joueur !");
+    // Fermer le modal des joueurs titulaires
     titulaireModal.style.display = "none";
+
+    // Réinitialiser la liste des nouveaux joueurs
     newPlayers = [];
 }
-
 
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
