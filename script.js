@@ -207,47 +207,6 @@ function editPlayer(player) {
     modal.classList.remove('hidden');
 }
 
-function selectedPlayer(addedplayer) {
-    let positions;
-    if (addedplayer.position === 'CB') {
-        positions = ['CB1', 'CB2'];
-    } else {
-        positions = [addedplayer.position];
-    }
-
-    for (let pos of positions) {
-        let addPlayer = document.getElementById(pos);
-        if (!addPlayer) continue;
-
-        let playerSlot = addPlayer.querySelector('.carte div');
-        if (playerSlot) {
-            let hasPlayer = playerSlot.querySelector('.relative');
-            if (!hasPlayer) {
-                playerSlot.innerHTML = playercardUI(addedplayer);
-                titulaireModal.style.display = "none";
-                newPlayers = [];
-                return; 
-            }
-        }
-    }
-
-    if (addedplayer.position === 'CB') {
-        for (let pos of positions) {
-            let addPlayer = document.getElementById(pos);
-            if (!addPlayer) continue;
-
-            let playerSlot = addPlayer.querySelector('.carte div');
-            if (playerSlot) {
-                playerSlot.innerHTML = playercardUI(addedplayer);
-                break;
-            }
-        }
-    }
-
-    titulaireModal.style.display = "none";
-    newPlayers = [];
-}
-
 // Update the playercardUI function to include onclick handlers
 function playercardUI(addedplayer) {
     let playerImage = addedplayer.AddedManually ? '' : addedplayer.photo;
@@ -349,24 +308,58 @@ function playercardUI(addedplayer) {
 }
 
 function selectedPlayer(addedplayer) {
-    // Trouver le conteneur correspondant à la position du joueur
     let addPlayer = document.getElementById(addedplayer.position);
 
-    // Supprimer la carte existante dans le slot du joueur
-    addPlayer.innerHTML = '';
+    let playerSlot = addPlayer.querySelector('.carte div');
+    if (playerSlot) {
+        playerSlot.innerHTML = playercardUI(addedplayer);
+    }
 
-    // Ajouter la nouvelle carte dans le slot du joueur
-    let playerSlot = document.createElement('div');
-    playerSlot.innerHTML = playercardUI(addedplayer);
-    addPlayer.appendChild(playerSlot);
-
-    // Fermer le modal des joueurs titulaires
+    // Close the modal
     titulaireModal.style.display = "none";
-
-    // Réinitialiser la liste des nouveaux joueurs
     newPlayers = [];
 }
 
+function selectedPlayer(addedplayer) {
+    let positions;
+    if (addedplayer.position === 'CB') {
+        positions = ['CB1', 'CB2'];
+    } else {
+        positions = [addedplayer.position];
+    }
+
+    for (let pos of positions) {
+        let addPlayer = document.getElementById(pos);
+        if (!addPlayer) continue;
+
+        let playerSlot = addPlayer.querySelector('.carte div');
+        if (playerSlot) {
+            let hasPlayer = playerSlot.querySelector('.relative');
+            if (!hasPlayer) {
+                playerSlot.innerHTML = playercardUI(addedplayer);
+                titulaireModal.style.display = "none";
+                newPlayers = [];
+                return; 
+            }
+        }
+    }
+
+    if (addedplayer.position === 'CB') {
+        for (let pos of positions) {
+            let addPlayer = document.getElementById(pos);
+            if (!addPlayer) continue;
+
+            let playerSlot = addPlayer.querySelector('.carte div');
+            if (playerSlot) {
+                playerSlot.innerHTML = playercardUI(addedplayer);
+                break;
+            }
+        }
+    }
+
+    titulaireModal.style.display = "none";
+    newPlayers = [];
+}
 
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
