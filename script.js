@@ -161,8 +161,9 @@ function deletePlayer(player, cardElement) {
         newPlayers.splice(newPlayerIndex, 1);
     }
 
-    // Remove the card from DOM
+    // Remove the card from DOM 
     if (cardElement) {
+        cardElement.parentElement.classList.add('hidden')
         cardElement.remove();
     } else {
         // Refresh the display
@@ -306,8 +307,6 @@ function playercardUI(addedplayer) {
         </div>`;
     }
 }
-
-
 
 function selectedPlayer(addedplayer) {
     // Trouver le conteneur correspondant à la position du joueur
