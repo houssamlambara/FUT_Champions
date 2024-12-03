@@ -65,7 +65,7 @@ const playerImages = {
 const country = {
     BR: "https://cdn.sofifa.net/flags/br.png",
     FR: "https://cdn.sofifa.net/flags/fr.png",
-    ARG: "https://cdn.sofifa.net/flags/ar.png",
+    AG: "https://cdn.sofifa.net/flags/ar.png",
     MR: "https://cdn.sofifa.net/flags/ma.png",
     EN: "https://cdn.sofifa.net/flags/gb-eng.png",
     IT: "https://cdn.sofifa.net/flags/it.png",
@@ -137,7 +137,6 @@ if (!jsonPlayers) {
     jsonPlayers = [];
 }
 
-
 function listplayer() {
     substitutePlayers.innerHTML = '';
     newPlayers.forEach(element => {
@@ -158,21 +157,18 @@ function deletePlayer(player, cardElement) {
         newPlayers.splice(newPlayerIndex, 1);
     }
 
-    // Mettre à jour localStorage (si vous utilisez localStorage pour stocker les données des joueurs)
+    // Mettre à jour localStorage
     localStorage.setItem('jsonPlayers', JSON.stringify(jsonPlayers));
     localStorage.setItem('newPlayers', JSON.stringify(newPlayers));
 
     // Supprimer l'élément de la carte du DOM
     if (cardElement) {
-        cardElement.remove();
-    } else {
-        // Si aucun élément DOM spécifique n'est fourni, rafraîchir l'affichage
-        listplayer();
+        cardElement.parentElement.removeChild(cardElement); // Méthode plus explicite
     }
 
-    console.log(`Le joueur ${player.name} a été supprimé définitivement.`);
+    // Rafraîchir la liste des joueurs (si nécessaire)
+    listplayer();
 }
-
 
 function editPlayer(player) {
     playerToEdit = player;
