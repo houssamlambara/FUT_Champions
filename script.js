@@ -307,16 +307,24 @@ function playercardUI(addedplayer) {
     }
 }
 
+
+
 function selectedPlayer(addedplayer) {
+    // Trouver le conteneur correspondant à la position du joueur
     let addPlayer = document.getElementById(addedplayer.position);
 
-    let playerSlot = addPlayer.querySelector('.carte div');
-    if (playerSlot) {
-        playerSlot.innerHTML = playercardUI(addedplayer);
-    }
+    // Supprimer la carte existante dans le slot du joueur
+    addPlayer.innerHTML = '';
 
-    // Close the modal
+    // Ajouter la nouvelle carte dans le slot du joueur
+    let playerSlot = document.createElement('div');
+    playerSlot.innerHTML = playercardUI(addedplayer);
+    addPlayer.appendChild(playerSlot);
+
+    // Fermer le modal des joueurs titulaires
     titulaireModal.style.display = "none";
+
+    // Réinitialiser la liste des nouveaux joueurs
     newPlayers = [];
 }
 
