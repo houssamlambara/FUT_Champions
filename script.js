@@ -309,6 +309,8 @@ function playercardUI(addedplayer) {
 
 function selectedPlayer(addedplayer) {
     let positions;
+
+    // Gestion spéciale pour CB (CB1 et CB2)
     if (addedplayer.position === 'CB') {
         positions = ['CB1', 'CB2'];
     } else {
@@ -317,36 +319,32 @@ function selectedPlayer(addedplayer) {
 
     for (let pos of positions) {
         let addPlayer = document.getElementById(pos);
-        if (!addPlayer) continue;
 
-        let playerSlot = addPlayer.querySelector('.carte div');
-        if (playerSlot) {
-            let hasPlayer = playerSlot.querySelector('.relative');
-            if (!hasPlayer) {
-                playerSlot.innerHTML = playercardUI(addedplayer);
-                titulaireModal.style.display = "none";
-                newPlayers = [];
-                return; 
-            }
+        if (addPlayer) {
+            // Vider le slot du joueur
+            addPlayer.innerHTML = '';
+
+            // Ajouter une nouvelle carte dans le slot
+            let playerSlot = document.createElement('div');
+            playerSlot.innerHTML = playercardUI(addedplayer);
+
+            addPlayer.appendChild(playerSlot);
+
+            // Fermer le modal des joueurs titulaires
+            titulaireModal.style.display = "none";
+
+            // Réinitialiser la liste des nouveaux joueurs
+            newPlayers = [];
+            return; // Arrêter après avoir ajouté le joueur
         }
     }
 
-    if (addedplayer.position === 'CB') {
-        for (let pos of positions) {
-            let addPlayer = document.getElementById(pos);
-            if (!addPlayer) continue;
-
-            let playerSlot = addPlayer.querySelector('.carte div');
-            if (playerSlot) {
-                playerSlot.innerHTML = playercardUI(addedplayer);
-                break;
-            }
-        }
-    }
-
+    // Si aucune position disponible (pour CB), afficher un message
+    alert("Aucune position disponible pour ce joueur !");
     titulaireModal.style.display = "none";
     newPlayers = [];
 }
+
 
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
