@@ -146,26 +146,33 @@ function listplayer() {
 }
 
 function deletePlayer(player, cardElement) {
-    // Remove from jsonPlayers array
+    // Supprimer le joueur de jsonPlayers
     const index = jsonPlayers.findIndex(p => p.name === player.name && p.position === player.position);
     if (index > -1) {
         jsonPlayers.splice(index, 1);
     }
 
-    // Remove from newPlayers array if it exists there
+    // Supprimer le joueur de newPlayers
     const newPlayerIndex = newPlayers.findIndex(p => p.name === player.name && p.position === player.position);
     if (newPlayerIndex > -1) {
         newPlayers.splice(newPlayerIndex, 1);
     }
 
-    // Remove the card from DOM
+    // Mettre à jour localStorage (si vous utilisez localStorage pour stocker les données des joueurs)
+    localStorage.setItem('jsonPlayers', JSON.stringify(jsonPlayers));
+    localStorage.setItem('newPlayers', JSON.stringify(newPlayers));
+
+    // Supprimer l'élément de la carte du DOM
     if (cardElement) {
         cardElement.remove();
     } else {
-        // Refresh the display
+        // Si aucun élément DOM spécifique n'est fourni, rafraîchir l'affichage
         listplayer();
     }
+
+    console.log(`Le joueur ${player.name} a été supprimé définitivement.`);
 }
+
 
 function editPlayer(player) {
     playerToEdit = player;
@@ -342,12 +349,12 @@ playercard.addEventListener("submit", function (event) {
 
     // Validate name
     if (!nameRegex.test(playername)) {
-        errors.push("Le nom du joueur est invalide. (2 à 50 caractères)");
+        errors.push("Le nom du joueur est invalide. 2 A 50 caractères)");
     }
 
     // Validate nationality
     if (!nationalityRegex.test(Nationality)) {
-        errors.push("La nationalité est invalide.");
+        errors.push("La nationaliter est invalide.");
     }
 
     // Validate team
