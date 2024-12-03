@@ -9,23 +9,37 @@ let Remplacement = document.getElementById("Remplacement");
 let titulaireModal = document.getElementById("Titulairemodal");
 let substitutePlayers = document.getElementById("substitutePlayers");
 let cancelModal = document.getElementById("cancelModal");
+const positionPlayer = document.getElementById('positionPlayer');
+const GKStats = document.getElementById('GKStats');
+const fieldPlayerStats = document.getElementById('fieldStats'); // Note: Changed selector to match your HTML
+
+positionPlayer.addEventListener('change', function() {
+    if (this.value === 'GK') {
+        GKStats.classList.remove('hidden');
+        fieldPlayerStats.classList.add('hidden');
+    } else {
+        GKStats.classList.add('hidden');
+        fieldPlayerStats.classList.remove('hidden');
+    }
+});
 
 
 let jsonPlayers;
 let newPlayers = [];
-
+let playerToEdit = null;
 
 fetch('./players.json')
     .then(res => res.json())
     .then(data => {
         jsonPlayers = data.players;
-    })
+    });
 
 titulaireButton.forEach(button => {
     button.onclick = function () {
         titulaireModal.style.display = "flex";
         let role = button.innerHTML;
 
+        newPlayers = [];
         jsonPlayers.forEach(element => {
             if (element.position == role) {
                 newPlayers.push(element);
@@ -35,26 +49,81 @@ titulaireButton.forEach(button => {
         listplayer();
     };
 });
-function listplayer() {
-    substitutePlayers.innerHTML = ''
-    newPlayers.forEach(element => {
-        substitutePlayers.innerHTML += playercardUI(element)
-    });
-}
 
-cancelModal.onclick = function () {
+// Your existing variable declarations remain the same
 
-    newPlayers = [];
-    titulaireModal.style.display = "none";
-}
-
-const openModal = () => {
-    modal.classList.remove('hidden');
+// Add these missing object definitions for the form
+const playerImages = {
+    player1: "https://cdn.sofifa.net/players/190/871/25_120.png",
+    player2: "https://cdn.sofifa.net/players/020/801/25_120.png",
+    player3: "https://cdn.sofifa.net/players/192/985/25_120.png",
+    player4: "https://cdn.sofifa.net/players/231/747/25_120.png",
+    player5: "https://cdn.sofifa.net/players/203/376/25_120.png",
+    player6: "https://cdn.sofifa.net/players/158/023/25_120.png",
+    player7: "https://cdn.sofifa.net/players/205/452/25_120.png",
+    player8: "https://cdn.sofifa.net/players/212/622/25_120.png",
+    player9: "https://cdn.sofifa.net/players/192/985/25_120.png"
 };
 
-function closeModal() {
-    modal.classList.add('hidden');
+const country = {
+    BR: "https://cdn.sofifa.net/flags/br.png",
+    FR: "https://cdn.sofifa.net/flags/fr.png",
+    ARG: "https://cdn.sofifa.net/flags/ar.png",
+    MR: "https://cdn.sofifa.net/flags/ma.png",
+    EN: "https://cdn.sofifa.net/flags/gb-eng.png",
+    IT: "https://cdn.sofifa.net/flags/it.png",
+    PR: "https://cdn.sofifa.net/flags/pt.png",
+    GR: "https://cdn.sofifa.net/flags/de.png",
+    ND: "https://cdn.sofifa.net/flags/nl.png",
+    BL: "https://cdn.sofifa.net/flags/be.png"
+};
+
+const club = {
+    team1: "https://cdn.sofifa.net/meta/team/7980/120.png",
+    team2: "https://cdn.sofifa.net/meta/team/2506/120.png",
+    team3: "https://cdn.sofifa.net/meta/team/9/120.png",
+    team4: "https://cdn.sofifa.net/meta/team/3468/120.png",
+    team5: "https://cdn.sofifa.net/meta/team/503/120.png",
+    team6: "https://cdn.sofifa.net/meta/team/7011/120.png",
+    team7: "https://cdn.sofifa.net/meta/team/14/120.png",
+    team8: "https://cdn.sofifa.net/meta/team/476/120.png",
+    team9: "https://cdn.sofifa.net/meta/team/591/120.png"
+};
+
+// Add function to get random player image
+function getRandomPlayerKey(obj) {
+    const keys = Object.keys(obj);
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    return keys[randomIndex];
 }
+
+
+positionPlayer.addEventListener('change', function() {
+    if (this.value === 'GK') {
+        GKStats.classList.remove('hidden');
+        fieldPlayerStats.classList.add('hidden');
+    } else {
+        GKStats.classList.add('hidden');
+        fieldPlayerStats.classList.remove('hidden');
+    }
+});
+
+// Modal handlers
+const openModal = () => {
+    modal.classList.remove('hidden');
+    // Reset form when opening
+    playercard.reset();
+    // Reset playerToEdit
+    playerToEdit = null;
+    // Reset position-specific stats visibility
+    GKStats.classList.add('hidden');
+    fieldPlayerStats.classList.remove('hidden');
+};
+
+const closeModal = () => {
+    modal.classList.add('hidden');
+    playerToEdit = null;
+};
 
 openModalButtons.forEach((button) => {
     button.addEventListener('click', openModal);
@@ -66,35 +135,91 @@ modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-const positionPlayer = document.getElementById('positionPlayer');
-const GKStats = document.getElementById('GKStats');
-const fieldPlayerStats = document.querySelector('.grid.grid-cols-2.gap-4');
+// Initialize jsonPlayers if fetch fails
+if (!jsonPlayers) {
+    jsonPlayers = [];
+}
 
 
-positionPlayer.addEventListener('change', function () {
-    if (this.value === 'GK') {
-        GKStats.classList.remove('hidden');
-        fieldPlayerStats.classList.add('hidden');
-    } else {
-        GKStats.classList.add('hidden');
-        fieldPlayerStats.classList.remove('hidden');
+function listplayer() {
+    substitutePlayers.innerHTML = '';
+    newPlayers.forEach(element => {
+        substitutePlayers.innerHTML += playercardUI(element);
+    });
+}
+
+function deletePlayer(player, cardElement) {
+    // Remove from jsonPlayers array
+    const index = jsonPlayers.findIndex(p => p.name === player.name && p.position === player.position);
+    if (index > -1) {
+        jsonPlayers.splice(index, 1);
     }
-});
 
+    // Remove from newPlayers array if it exists there
+    const newPlayerIndex = newPlayers.findIndex(p => p.name === player.name && p.position === player.position);
+    if (newPlayerIndex > -1) {
+        newPlayers.splice(newPlayerIndex, 1);
+    }
+
+    // Remove the card from DOM
+    if (cardElement) {
+        cardElement.remove();
+    } else {
+        // Refresh the display
+        listplayer();
+    }
+}
+
+function editPlayer(player) {
+    playerToEdit = player;
+    
+    // Populate form with player data
+    document.getElementById('Name').value = player.name;
+    document.getElementById('Nationality').value = player.nationality;
+    document.getElementById('Team').value = player.club;
+    document.getElementById('positionPlayer').value = player.position;
+
+    if (player.position === 'GK') {
+        document.getElementById('DIV').value = player.diving;
+        document.getElementById('HAN').value = player.handling;
+        document.getElementById('KIC').value = player.kicking;
+        document.getElementById('REF').value = player.reflexes;
+        document.getElementById('SPD').value = player.speed;
+        document.getElementById('POS').value = player.positioning;
+        
+        // Show GK stats and hide field player stats
+        document.getElementById('GKStats').classList.remove('hidden');
+        document.querySelector('.grid.grid-cols-2.gap-4').classList.add('hidden');
+    } else {
+        document.getElementById('PAC').value = player.pace;
+        document.getElementById('SHO').value = player.shooting;
+        document.getElementById('PAS').value = player.passing;
+        document.getElementById('DRI').value = player.dribbling;
+        document.getElementById('DEF').value = player.defending;
+        document.getElementById('PHY').value = player.physical;
+        
+        // Show field player stats and hide GK stats
+        document.getElementById('GKStats').classList.add('hidden');
+        document.querySelector('.grid.grid-cols-2.gap-4').classList.remove('hidden');
+    }
+
+    // Open modal
+    modal.classList.remove('hidden');
+}
+
+// Update the playercardUI function to include onclick handlers
 function playercardUI(addedplayer) {
     let playerImage = addedplayer.AddedManually ? '' : addedplayer.photo;
-    if (addedplayer.position === "GK") {
-        return `
+    const baseCard = `
         <div class="relative flex justify-center items-center">
-               
             <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" onclick='deletePlayer(${JSON.stringify(addedplayer)}, this.closest(".relative"))' title="Delete"></i>
+                <i class="fas fa-plus absolute bottom-2 right-1 bg-white text-green-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-green-500 hover:text-white transition duration-200 ease-in-out" onclick='selectedPlayer(${JSON.stringify(addedplayer)})' title="Add or Replace"></i>
+                <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" onclick='editPlayer(${JSON.stringify(addedplayer)})' title="Edit"></i>`;
 
-            <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
-            <i class="fas fa-plus absolute bottom-2 right-1 bg-white text-green-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-green-500 hover:text-white transition duration-200 ease-in-out" onclick='selectedPlayer(${JSON.stringify(addedplayer)})' title="Add or Replace"></i>
-            <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
-
-            <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
+    if (addedplayer.position === "GK") {
+        return baseCard + `
                 ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
                 <div class="absolute object-contain" 
                     style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">
@@ -137,16 +262,7 @@ function playercardUI(addedplayer) {
             </div>
         </div>`;
     } else {
-        return `
-        <div class="relative flex justify-center items-center">
-    
-            <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
-            <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-
-            <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
-            <i class="fas fa-plus absolute bottom-2 right-1 bg-white text-green-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-green-500 hover:text-white transition duration-200 ease-in-out" onclick='selectedPlayer(${JSON.stringify(addedplayer)})' title="Add or Replace"></i>
-            <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
-
+        return baseCard + `
                 ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
                 <div class="absolute object-contain" 
                     style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">                 
@@ -185,7 +301,6 @@ function playercardUI(addedplayer) {
                         <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
                         <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
                     </div>
-
                 </div>
             </div>
         </div>`;
@@ -193,10 +308,16 @@ function playercardUI(addedplayer) {
 }
 
 function selectedPlayer(addedplayer) {
-    document.getElementById(addedplayer.position).innerHTML = playercardUI(addedplayer);
+    let addPlayer = document.getElementById(addedplayer.position);
 
-    newPlayers = [];
+    let playerSlot = addPlayer.querySelector('.carte div');
+    if (playerSlot) {
+        playerSlot.innerHTML = playercardUI(addedplayer);
+    }
+
+    // Close the modal
     titulaireModal.style.display = "none";
+    newPlayers = [];
 }
 
 
@@ -207,173 +328,111 @@ playercard.addEventListener("submit", function (event) {
     let Nationality = document.getElementById("Nationality").value;
     let Team = document.getElementById("Team").value;
     let positionPlayer = document.getElementById("positionPlayer").value;
-    let PAC = document.getElementById("PAC").value;
-    let SHO = document.getElementById("SHO").value;
-    let PAS = document.getElementById("PAS").value;
-    let DRI = document.getElementById("DRI").value;
-    let DEF = document.getElementById("DEF").value;
-    let PHY = document.getElementById("PHY").value;
-
-    let DIV = document.getElementById("DIV").value;
-    let HAN = document.getElementById("HAN").value;
-    let KIC = document.getElementById("KIC").value;
-    let REF = document.getElementById("REF").value;
-    let SPD = document.getElementById("SPD").value;
-    let POS = document.getElementById("POS").value;
-
-    let moyenne = Math.round(
-        (parseInt(PAC) + parseInt(SHO) + parseInt(PAS) + parseInt(DRI) + parseInt(DEF) + parseInt(PHY)) / 6
-    );
-
-    let playerImages = {
-        player1: "https://cdn.sofifa.net/players/190/871/25_120.png",
-        player2: "https://cdn.sofifa.net/players/020/801/25_120.png",
-        player3: "https://cdn.sofifa.net/players/192/985/25_120.png",
-        player4: "https://cdn.sofifa.net/players/231/747/25_120.png",
-        player5: "https://cdn.sofifa.net/players/203/376/25_120.png",
-        player6: "https://cdn.sofifa.net/players/158/023/25_120.png",
-        player7: "https://cdn.sofifa.net/players/205/452/25_120.png",
-        player8: "https://cdn.sofifa.net/players/212/622/25_120.png",
-        player9: "https://cdn.sofifa.net/players/192/985/25_120.png",
-    }
-
-    let country = {
-        BR: "https://cdn.sofifa.net/flags/br.png",
-        FR: "https://cdn.sofifa.net/flags/fr.png",
-        ARG: "https://cdn.sofifa.net/flags/ar.png",
-        MR: "https://cdn.sofifa.net/flags/ma.png",
-        EN: "https://cdn.sofifa.net/flags/gb-eng.png",
-        IT: "https://cdn.sofifa.net/flags/it.png",
-        PR: "https://cdn.sofifa.net/flags/pt.png",
-        GR: "https://cdn.sofifa.net/flags/de.png",
-        ND: "https://cdn.sofifa.net/flags/nl.png",
-        BL: "https://cdn.sofifa.net/flags/be.png",
+    
+    let playerData = {
+        name: playername,
+        nationality: Nationality,
+        club: Team,
+        position: positionPlayer,
+        flag: country[Nationality],
+        logo: club[Team],
+        AddedManually: true
     };
 
-    let club = {
-        team1: "https://cdn.sofifa.net/meta/team/7980/120.png",
-        team2: "https://cdn.sofifa.net/meta/team/2506/120.png",
-        team3: "https://cdn.sofifa.net/meta/team/9/120.png",
-        team4: "https://cdn.sofifa.net/meta/team/3468/120.png",
-        team5: "https://cdn.sofifa.net/meta/team/503/120.png",
-        team6: "https://cdn.sofifa.net/meta/team/7011/120.png",
-        team7: "https://cdn.sofifa.net/meta/team/14/120.png",
-        team8: "https://cdn.sofifa.net/meta/team/476/120.png",
-        team9: "https://cdn.sofifa.net/meta/team/591/120.png",
-    };
-
-    function deleteCard(event) {
-        const card = event.target.closest('.border-md'); // Trouve l'élément parent de la poubelle (la carte)
-        if (card) {
-            card.remove(); // Supprime la carte du joueur
-        }
-    }
-
-    Remplacement.addEventListener('click', (event) => {
-        if (event.target.classList.contains('fa-trash-alt')) { // Suppression
-            deleteCard(event);
-        } else if (event.target.classList.contains('fa-edit')) { // Modification
-            editCard(event);
-        }
-    });
-
-    function getRandomPlayerKey(obj) {
-        const keys = Object.keys(obj); // Récupère toutes les clés
-        const randomIndex = Math.floor(Math.random() * keys.length);
-
-        return keys[randomIndex];
-    }
-
-    let randomPlayerKey = getRandomPlayerKey(playerImages);
-
-    let addedplayer = {
-        "name": playername,
-        "photo": playerImages[randomPlayerKey], // Cette photo peut être vide si nécessaire
-        "nationality": Nationality,
-        "flag": country[Nationality],
-        "club": Team,
-        "logo": club[Team],
-        "position": positionPlayer,
-        "rating": moyenne,
-        "pace": PAC,
-        "shooting": SHO,
-        "passing": PAS,
-        "dribbling": DRI,
-        "defending": DEF,
-        "physical": PHY,
-        "diving": DIV,
-        "handling": HAN,
-        "kicking": KIC,
-        "reflexes": REF,
-        "speed": SPD,
-        "positioning": POS,
-        "AddedManually": true // Attribut pour savoir si le joueur est ajouté manuellement
-    };
-
-    jsonPlayers.push(
-        addedplayer
-    )
-    let newcard = document.createElement("div");
-    newcard.classList.add("border-md", "border-black", "hover:scale-110", "transition", "duration-200", "cursor-pointer");
-    if (positionPlayer === "GK") {
-        newcard.innerHTML = `
-            <div class="relative flex justify-center items-center">
-
-                <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
-                <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-
-                 <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" title="Delete"></i>
-                 <i class="fas fa-plus absolute bottom-2 right-1 bg-white text-green-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-green-500 hover:text-white transition duration-200 ease-in-out" onclick='selectedPlayer(${JSON.stringify(addedplayer)})' title="Add or Replace"></i>
-                 <i class="fas fa-edit absolute top-2 left-0 bg-white text-blue-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-blue-500 hover:text-white transition duration-200 ease-in-out" title="Edit"></i>
-
-                    <div class="absolute left-[13%] top-[15%] text-center text-white">
-                        <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
-                        <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
-                    </div>
-                    <div class="absolute top-[60%] text-center text-white">
-                        <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
-                        <div class="flex font-bold text-[0.6rem] gap-1">
-                            <div class="flex flex-col">
-                                <span>DIV</span>
-                                <span>${addedplayer.diving}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>HAN</span>
-                                <span>${addedplayer.handling}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>KIC</span>
-                                <span>${addedplayer.kicking}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>REF</span>
-                                <span>${addedplayer.reflexes}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>SPD</span>
-                                <span>${addedplayer.speed}</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span>POS</span>
-                                <span>${addedplayer.positioning}</span>
-                            </div>
-                        </div>
-                        <div class="flex justify-center items-center mt-1">
-                        <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
-                        <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
-                     </div>
-
-                 </div>          
-                </div>
-            </div>
-        `;
-    } else {
-        newcard.innerHTML = playercardUI(addedplayer)
+    // Calculate average rating based on position
+    if (positionPlayer === 'GK') {
+        const div = parseInt(document.getElementById("DIV").value);
+        const han = parseInt(document.getElementById("HAN").value);
+        const kic = parseInt(document.getElementById("KIC").value);
+        const ref = parseInt(document.getElementById("REF").value);
+        const spd = parseInt(document.getElementById("SPD").value);
+        const pos = parseInt(document.getElementById("POS").value);
         
+        Object.assign(playerData, {
+            diving: div,
+            handling: han,
+            kicking: kic,
+            reflexes: ref,
+            speed: spd,
+            positioning: pos,
+            rating: Math.round((div + han + kic + ref + spd + pos) / 6)
+        });
+    } else {
+        const pac = parseInt(document.getElementById("PAC").value);
+        const sho = parseInt(document.getElementById("SHO").value);
+        const pas = parseInt(document.getElementById("PAS").value);
+        const dri = parseInt(document.getElementById("DRI").value);
+        const def = parseInt(document.getElementById("DEF").value);
+        const phy = parseInt(document.getElementById("PHY").value);
+        
+        Object.assign(playerData, {
+            pace: pac,
+            shooting: sho,
+            passing: pas,
+            dribbling: dri,
+            defending: def,
+            physical: phy,
+            rating: Math.round((pac + sho + pas + dri + def + phy) / 6)
+        });
     }
 
-    Remplacement.appendChild(newcard);
+    // Add random player image
+    let randomPlayerKey = getRandomPlayerKey(playerImages);
+    playerData.photo = playerImages[randomPlayerKey];
+
+    if (playerToEdit) {
+        // Update existing player in jsonPlayers
+        const index = jsonPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
+        if (index > -1) {
+            jsonPlayers[index] = playerData;
+        }
+
+        // Update player in newPlayers if it exists there
+        const newPlayerIndex = newPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
+        if (newPlayerIndex > -1) {
+            newPlayers[newPlayerIndex] = playerData;
+        }
+
+        // Find and update the existing card in the DOM
+        const allCards = Remplacement.getElementsByClassName('relative');
+        for (let card of allCards) {
+            const nameElement = card.querySelector('.font-bold.text-\\[0\\.8rem\\]');
+            if (nameElement && nameElement.textContent === playerToEdit.name) {
+                const parentCard = nameElement.closest('.relative');
+                if (parentCard) {
+                    parentCard.outerHTML = playercardUI(playerData);
+                }
+                break;
+            }
+        }
+
+        // Reset playerToEdit
+        playerToEdit = null;
+    } else {
+        // Add new player
+        jsonPlayers.push(playerData);
+        
+        // Create and add new card
+        let newcard = document.createElement("div");
+        newcard.innerHTML = playercardUI(playerData);
+        Remplacement.appendChild(newcard);
+    }
+
+    // Refresh the display if we're showing filtered players
+    if (newPlayers.length > 0) {
+        listplayer();
+    }
+
+    // Reset form and close modal
     playercard.reset();
     modal.classList.add('hidden');
 
+    // Reset fieldStats visibility
+    document.getElementById('fieldStats').classList.add('hidden');
+    document.getElementById('GKStats').classList.add('hidden');
 });
+
+cancelModal.onclick = function () {
+    newPlayers = [];
+    titulaireModal.style.display = "none";
+};

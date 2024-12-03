@@ -146,8 +146,6 @@
                                 class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
                         </div>
                     </div>
-
-
                     <div class="flex flex-col items-center">
                         <button type="submit"
                             class="bg-yellow-500 text-white px-4 py-3 rounded-lg w-full hover:bg-yellow-600 transition">Add
@@ -160,21 +158,156 @@
         </div>
     </div>
 
+    <!-- Modal Edit Player -->
+    <div id="editModal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
+        <div class="bg-gray-300 p-8 rounded-lg shadow-xl max-w-sm w-full h-auto max-h-[90vh] overflow-y-auto"
+            style="background-image: url(./src/assets/img/stade-de-football-avec-brouillard-spectaculaire.png);background-repeat: no-repeat; background-position: center; background-size: cover;">
+            <form id="playerForm">
+
+                <label for="Name" class="block text-black mb-2">Player Name</label>
+                <input type="text" id="Name" name="Name"
+                    class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+
+                <label for="Nationality" class="block text-black mb-2">Nationality</label>
+                <select id="Nationality"
+                    class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300">
+                    <option disabled selected="">Country</option>
+                    <option value="BR">Brazil</option>
+                    <option value="FR">France</option>
+                    <option value="ARG">Argentina</option>
+                    <option value="MR">Morocco</option>
+                    <option value="EN">England</option>
+                    <option value="IT">Italy</option>
+                    <option value="PR">Portugal</option>
+                    <option value="GR">Germany</option>
+                    <option value="ND">Netherlands</option>
+                    <option value="BL">Belgium</option>
+                </select>
+
+                <label for="Team" class="block text-black mb-2">Team</label>
+                <select id="Team"
+                    class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300">
+                    <option disabled selected="">Club</option>
+                    <option value="team1">Atletico Madrid</option>
+                    <option value="team2">Al Nassr</option>
+                    <option value="team3">Manchester City</option>
+                    <option value="team4">Real Madrid</option>
+                    <option value="team5">Bayern Munich</option>
+                    <option value="team6">Al-Hilal</option>
+                    <option value="team7">Manchester United</option>
+                    <option value="team8">Al-Ittihad</option>
+                    <option value="team9">Paris Saint-Germain</option>
+                </select>
+
+                <label for="positionPlayer" class="block text-black mb-2">Position</label>
+                <select id="positionPlayer"
+                    class="text-black border border-gray-400 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300">
+                    <option value="" selected disabled>Choose a position</option>
+                    <option value="GK">Goalkeeper (GK)</option>
+                    <option value="CB">Center Back (CB)</option>
+                    <option value="LB">Left Back (LB)</option>
+                    <option value="RB">Right Back (RB)</option>
+                    <option value="CDM">Defensive Midfielder (CDM)</option>
+                    <option value="CM">Central Midfielder (CM)</option>
+                    <option value="CAM">Attacking Midfielders(CAM)</option>
+                    <option value="RW">Right Winger (RW)</option>
+                    <option value="LW">Left Winger (LW)</option>
+                    <option value="ST">Striker (ST)</option>
+                </select>
+
+                <div id="fieldStats" class=" hidden grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="PAC" class="block text-black mb-2">PAC</label>
+                        <input type="number" id="PAC" name="PAC" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="SHO" class="block text-black mb-2">SHO</label>
+                        <input type="number" id="SHO" name="SHO" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="PAS" class="block text-black mb-2">PAS</label>
+                        <input type="number" id="PAS" name="PAS" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="DRI" class="block text-black mb-2">DRI</label>
+                        <input type="number" id="DRI" name="DRI" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="DEF" class="block text-black mb-2">DEF</label>
+                        <input type="number" id="DEF" name="DEF" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="PHY" class="block text-black mb-2">PHY</label>
+                        <input type="number" id="PHY" name="PHY" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                </div>
+
+                <div id="GKStats" class="grid grid-cols-2 gap-4 hidden">
+                    <div>
+                        <label for="DIV" class="block text-black mb-2">DIV</label>
+                        <input type="number" id="DIV" name="DIV" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="HAN" class="block text-black mb-2">HAN</label>
+                        <input type="number" id="HAN" name="HAN" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="KIC" class="block text-black mb-2">KIC</label>
+                        <input type="number" id="KIC" name="KIC" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="REF" class="block text-black mb-2">REF</label>
+                        <input type="number" id="REF" name="REF" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="SPD" class="block text-black mb-2">SPD</label>
+                        <input type="number" id="SPD" name="SPD" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                    <div>
+                        <label for="POS" class="block text-black mb-2">POS</label>
+                        <input type="number" id="POS" name="POS" min="20" max="99"
+                            class="text-black border border-gray-300 p-2 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <button type="submit"
+                        class="bg-yellow-500 text-white px-4 py-3 rounded-lg w-full hover:bg-yellow-600 transition">Update Player
+                        </button>
+                    <button type="button" id="closeModalButton"
+                        class="bg-red-600 text-white px-4 py-3 rounded-lg w-full mt-2 hover:bg-red-500 transition">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     </header>
 
     <!-- MODALTITULAIREPLAYER -->
 
-    <div id="Titulairemodal" class="overflow-y-auto overflow-x-hidden fixed inset-0 top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full hidden">
+    <div id="Titulairemodal"
+        class="overflow-y-auto overflow-x-hidden fixed inset-0 top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full hidden">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex justify-center items-center p-4 border-b">
                     <h3 class="text-lg font-bold text-green-500">Select Player to Line-UP</h3>
                 </div>
                 <div id="substitutePlayers" class="grid grid-cols-4 p-4 max-h-[500px] w-auto overflow-x-auto">
-                    
+
                 </div>
                 <div class="flex justify-center p-4">
-                    <button id="cancelModal" class="bg-green-500 hover:bg-green-500 px-2 py-2 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Cancel</button>
+                    <button id="cancelModal"
+                        class="bg-green-500 hover:bg-green-500 px-2 py-2 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Cancel</button>
                 </div>
             </div>
         </div>
@@ -188,11 +321,11 @@
             <img src="./src/assets/img/stadium_background.webp" alt="Stadium" class="w-full h-full object-cover" />
         </div>
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
-            <div class="flex justify-center items-center"  id="LW">
+            <div class="flex justify-center items-center" id="LW">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
 
-                    <div class="rounded-lg mx-auto h-20 w-20" ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="mt-8 titulaire-btn text-green-500 text-2xl">LW</button>
                     </div>
@@ -212,7 +345,7 @@
             <div class="flex justify-center items-center" role="RW" id="RW">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
-                    <div class="rounded-lg mx-auto h-20 w-20"  ></div>
+                    <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="mt-8 titulaire-btn text-green-500 text-2xl">RW</button>
                     </div>
@@ -221,7 +354,7 @@
             </div>
         </div>
         <div class="col-span-3 grid grid-cols-3 z-10 relative">
-            <div class="flex justify-center items-center" role="CM"  id="CM">
+            <div class="flex justify-center items-center" role="CM" id="CM">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -240,7 +373,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center items-center" role="CAM"  id="CAM">
+            <div class="flex justify-center items-center" role="CAM" id="CAM">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -260,7 +393,9 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center" role="CB" id="CB">
+            
+            
+            <div class="mt-28 flex justify-center items-center" role="CB" id="CB1">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
@@ -269,16 +404,16 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-28 flex justify-center items-center" role="CB" id="CB">
+            <div class="mt-28 flex justify-center items-center" role="CB" id="CB2">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
                     <div class="rounded-lg mx-auto h-20 w-20"></div>
                     <div class="flex justify-center ">
                         <button class="mt-8 titulaire-btn text-green-500 text-2xl">CB</button>
                     </div>
+                </div>
+            </div>
 
-                </div>
-            </div>
             <div class="flex justify-center items-center" role="RB" id="RB">
                 <div class="carte p-8 rounded-lg relative bg-cover bg-center"
                     style="background-image: url('./src/assets/img/cart-1.png');">
