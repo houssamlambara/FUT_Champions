@@ -13,7 +13,7 @@ const positionPlayer = document.getElementById('positionPlayer');
 const GKStats = document.getElementById('GKStats');
 const fieldPlayerStats = document.getElementById('fieldStats'); // Note: Changed selector to match your HTML
 
-positionPlayer.addEventListener('change', function() {
+positionPlayer.addEventListener('change', function () {
     if (this.value === 'GK') {
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
@@ -95,7 +95,7 @@ function getRandomPlayerKey(obj) {
 }
 
 
-positionPlayer.addEventListener('change', function() {
+positionPlayer.addEventListener('change', function () {
     if (this.value === 'GK') {
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
@@ -158,21 +158,6 @@ function deletePlayer(player, cardElement) {
         newPlayers.splice(newPlayerIndex, 1);
     }
 
-    // kawtar the card from DOM
-    // if (cardElement) {
-    //     console.log("cardElement trouvé");
-    //     console.log("ClassList Parent: ", cardElement.parentElement.classList);
-    //     // cardElement.remove()
-    //     cardElement.classList.add('hidden'); // Vérifiez si cela empêche l'affichage
-    
-    //     if (cardElement.parentElement) {
-    //         console.log("Parent trouvé");
-    
-    //         cardElement.parentElement.classList.add('w-16', 'h-16');
-    //         cardElement.parentElement.style.backgroundImage = "url('./src/assets/img/cart-1.png')";
-    //         cardElement.parentElement.style.backgroundSize = 'cover'; // S'assurer que l'image remplit l'élément
-    //     }
-
     // Remove the card from DOM
     if (cardElement) {
         cardElement.remove();
@@ -184,7 +169,7 @@ function deletePlayer(player, cardElement) {
 
 function editPlayer(player) {
     playerToEdit = player;
-    
+
     // Populate form with player data
     document.getElementById('Name').value = player.name;
     document.getElementById('Nationality').value = player.nationality;
@@ -198,7 +183,7 @@ function editPlayer(player) {
         document.getElementById('REF').value = player.reflexes;
         document.getElementById('SPD').value = player.speed;
         document.getElementById('POS').value = player.positioning;
-        
+
         // Show GK stats and hide field player stats
         document.getElementById('GKStats').classList.remove('hidden');
         document.querySelector('.grid.grid-cols-2.gap-4').classList.add('hidden');
@@ -209,7 +194,7 @@ function editPlayer(player) {
         document.getElementById('DRI').value = player.dribbling;
         document.getElementById('DEF').value = player.defending;
         document.getElementById('PHY').value = player.physical;
-        
+
         // Show field player stats and hide GK stats
         document.getElementById('GKStats').classList.add('hidden');
         document.querySelector('.grid.grid-cols-2.gap-4').classList.remove('hidden');
