@@ -341,11 +341,81 @@ function selectedPlayer(addedplayer) {
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    let playername = document.getElementById("Name").value;
-    let Nationality = document.getElementById("Nationality").value;
-    let Team = document.getElementById("Team").value;
-    let positionPlayer = document.getElementById("positionPlayer").value;
-    
+    // Regex patterns
+    const nameRegex = /^[a-zA-ZÀ-ÿ \-']{2,50}$/;
+    const nationalityRegex = /^[A-Z]{2}$/;
+    const teamRegex = /^[a-zA-Z0-9 \-]{2,50}$/;
+    const statRegex = /^([1-9][0-9]?)$/;
+
+    // Get values from the form
+    const playername = document.getElementById("Name").value;
+    const Nationality = document.getElementById("Nationality").value;
+    const Team = document.getElementById("Team").value;
+    const positionPlayer = document.getElementById("positionPlayer").value;
+
+    let errors = [];
+
+    // Validate name
+    if (!nameRegex.test(playername)) {
+        errors.push("Le nom du joueur est invalide. (2 à 50 caractères)");
+    }
+
+    // Validate nationality
+    if (!nationalityRegex.test(Nationality)) {
+        errors.push("La nationalité est invalide.");
+    }
+
+    // Validate team
+    if (!teamRegex.test(Team)) {
+        errors.push("Le nom de l'équipe est invalide.");
+    }
+
+    // Validate stats based on position
+    if (positionPlayer === "GK") {
+        const div = document.getElementById("DIV").value;
+        const han = document.getElementById("HAN").value;
+        const kic = document.getElementById("KIC").value;
+        const ref = document.getElementById("REF").value;
+        const spd = document.getElementById("SPD").value;
+        const pos = document.getElementById("POS").value;
+
+        if (
+            !statRegex.test(div) ||
+            !statRegex.test(han) ||
+            !statRegex.test(kic) ||
+            !statRegex.test(ref) ||
+            !statRegex.test(spd) ||
+            !statRegex.test(pos)
+        ) {
+            errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
+        }
+    } else {
+        const pac = document.getElementById("PAC").value;
+        const sho = document.getElementById("SHO").value;
+        const pas = document.getElementById("PAS").value;
+        const dri = document.getElementById("DRI").value;
+        const def = document.getElementById("DEF").value;
+        const phy = document.getElementById("PHY").value;
+
+        if (
+            !statRegex.test(pac) ||
+            !statRegex.test(sho) ||
+            !statRegex.test(pas) ||
+            !statRegex.test(dri) ||
+            !statRegex.test(def) ||
+            !statRegex.test(phy)
+        ) {
+            errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
+        }
+    }
+
+    // If there are errors, show them and stop submission
+    if (errors.length > 0) {
+        alert("Erreurs :\n" + errors.join("\n"));
+        return;
+    }
+
+    // If validation passes, continue with form processing
     let playerData = {
         name: playername,
         nationality: Nationality,
@@ -357,14 +427,14 @@ playercard.addEventListener("submit", function (event) {
     };
 
     // Calculate average rating based on position
-    if (positionPlayer === 'GK') {
+    if (positionPlayer === "GK") {
         const div = parseInt(document.getElementById("DIV").value);
         const han = parseInt(document.getElementById("HAN").value);
         const kic = parseInt(document.getElementById("KIC").value);
         const ref = parseInt(document.getElementById("REF").value);
         const spd = parseInt(document.getElementById("SPD").value);
         const pos = parseInt(document.getElementById("POS").value);
-        
+
         Object.assign(playerData, {
             diving: div,
             handling: han,
@@ -381,7 +451,7 @@ playercard.addEventListener("submit", function (event) {
         const dri = parseInt(document.getElementById("DRI").value);
         const def = parseInt(document.getElementById("DEF").value);
         const phy = parseInt(document.getElementById("PHY").value);
-        
+
         Object.assign(playerData, {
             pace: pac,
             shooting: sho,
@@ -399,23 +469,27 @@ playercard.addEventListener("submit", function (event) {
 
     if (playerToEdit) {
         // Update existing player in jsonPlayers
-        const index = jsonPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
+        const index = jsonPlayers.findIndex(
+            (p) => p.name === playerToEdit.name && p.position === playerToEdit.position
+        );
         if (index > -1) {
             jsonPlayers[index] = playerData;
         }
 
         // Update player in newPlayers if it exists there
-        const newPlayerIndex = newPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
+        const newPlayerIndex = newPlayers.findIndex(
+            (p) => p.name === playerToEdit.name && p.position === playerToEdit.position
+        );
         if (newPlayerIndex > -1) {
             newPlayers[newPlayerIndex] = playerData;
         }
 
         // Find and update the existing card in the DOM
-        const allCards = Remplacement.getElementsByClassName('relative');
+        const allCards = Remplacement.getElementsByClassName("relative");
         for (let card of allCards) {
-            const nameElement = card.querySelector('.font-bold.text-\\[0\\.8rem\\]');
+            const nameElement = card.querySelector(".font-bold.text-\\[0\\.8rem\\]");
             if (nameElement && nameElement.textContent === playerToEdit.name) {
-                const parentCard = nameElement.closest('.relative');
+                const parentCard = nameElement.closest(".relative");
                 if (parentCard) {
                     parentCard.outerHTML = playercardUI(playerData);
                 }
@@ -428,7 +502,7 @@ playercard.addEventListener("submit", function (event) {
     } else {
         // Add new player
         jsonPlayers.push(playerData);
-        
+
         // Create and add new card
         let newcard = document.createElement("div");
         newcard.innerHTML = playercardUI(playerData);
@@ -442,12 +516,13 @@ playercard.addEventListener("submit", function (event) {
 
     // Reset form and close modal
     playercard.reset();
-    modal.classList.add('hidden');
+    modal.classList.add("hidden");
 
     // Reset fieldStats visibility
-    document.getElementById('fieldStats').classList.add('hidden');
-    document.getElementById('GKStats').classList.add('hidden');
+    document.getElementById("fieldStats").classList.add("hidden");
+    document.getElementById("GKStats").classList.add("hidden");
 });
+
 
 cancelModal.onclick = function () {
     newPlayers = [];
