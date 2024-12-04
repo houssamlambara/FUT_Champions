@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="team">
+        <li>Joueur 1</li>
+        <li>Joueur 2</li>
+    </ul>
+    <button id="add">ADD</button>
+    <button id="remove" >REMOVE</button>
+    <p id="conteur">NBR DE JOUEUR EST 2</p>
+</body>
+<script>
+   
+   document.querySelector('#add').addEventListener('click',()=>{
+    let nbrJoueur= document.querySelectorAll('li').length;
+   nbrJoueur++;
+    document.querySelector('#team').innerHTML+=`
+    <li>Joueur ${nbrJoueur}</li>
+    `
+    document.getElementById('conteur').textContent="NBR DE JOEUR EST "+nbrJoueur;
+
+   })
+
+        
+            
+        
+
+
+</script>
+</html>

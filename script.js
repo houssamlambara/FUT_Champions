@@ -13,8 +13,10 @@ const positionPlayer = document.getElementById('positionPlayer');
 const GKStats = document.getElementById('GKStats');
 const fieldPlayerStats = document.getElementById('fieldStats'); // Note: Changed selector to match your HTML
 
+
+// stat change GK
 positionPlayer.addEventListener('change', function() {
-    if (this.value === 'GK') {
+    if (positionPlayer.value === 'GK') {
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
     } else {
@@ -137,7 +139,7 @@ const originalUI = {
 const country = {
     BR: "https://cdn.sofifa.net/flags/br.png",
     FR: "https://cdn.sofifa.net/flags/fr.png",
-    ARG: "https://cdn.sofifa.net/flags/ar.png",
+    AG: "https://cdn.sofifa.net/flags/ar.png",
     MR: "https://cdn.sofifa.net/flags/ma.png",
     EN: "https://cdn.sofifa.net/flags/gb-eng.png",
     IT: "https://cdn.sofifa.net/flags/it.png",
@@ -200,14 +202,14 @@ openModalButtons.forEach((button) => {
 
 closeModalButton.addEventListener('click', closeModal);
 
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
+// modal.addEventListener('click', (e) => {
+//     if (e.target === modal) closeModal();
+// });
 
 // Initialize jsonPlayers if fetch fails
-if (!jsonPlayers) {
-    jsonPlayers = [];
-}
+// if (!jsonPlayers) {
+//     jsonPlayers = [];
+// }
 
 
 function listplayer() {
@@ -594,7 +596,7 @@ playercard.addEventListener("submit", function (event) {
  
      // Validate name
      if (!nameRegex.test(playername)) {
-         errors.push("Le nom du joueur est invalide. (2 à 50 caractères)");
+         errors.push("Le nom du joueur est invalide. (2 a 50 caractères)");
      }
  
      // Validate nationality
@@ -604,7 +606,7 @@ playercard.addEventListener("submit", function (event) {
  
      // Validate team
      if (!teamRegex.test(Team)) {
-         errors.push("Le nom de l'équipe est invalide.");
+         errors.push("Le nom de l'equipe est invalide.");
      }
  
      // Validate stats based on position
@@ -624,7 +626,7 @@ playercard.addEventListener("submit", function (event) {
              !statRegex.test(spd) ||
              !statRegex.test(pos)
          ) {
-             errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
+             errors.push("Les statistiques du joueur doivent etre entre 1 et 99.");
          }
      } else {
          const pac = document.getElementById("PAC").value;
@@ -642,7 +644,7 @@ playercard.addEventListener("submit", function (event) {
              !statRegex.test(def) ||
              !statRegex.test(phy)
          ) {
-             errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
+             errors.push("Les statistiques du joueur doivent etre entre 1 et 99.");
          }
      }
  
