@@ -13,7 +13,7 @@ const positionPlayer = document.getElementById('positionPlayer');
 const GKStats = document.getElementById('GKStats');
 const fieldPlayerStats = document.getElementById('fieldStats'); // Note: Changed selector to match your HTML
 
-positionPlayer.addEventListener('change', function () {
+positionPlayer.addEventListener('change', function() {
     if (this.value === 'GK') {
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
@@ -50,6 +50,9 @@ titulaireButton.forEach(button => {
     };
 });
 
+// Your existing variable declarations remain the same
+
+// Add these missing object definitions for the form
 const playerImages = {
     player1: "https://cdn.sofifa.net/players/190/871/25_120.png",
     player2: "https://cdn.sofifa.net/players/020/801/25_120.png",
@@ -62,10 +65,79 @@ const playerImages = {
     player9: "https://cdn.sofifa.net/players/192/985/25_120.png"
 };
 
+const originalUI = {
+    'GK': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">GK</button>
+        </div>
+    </div>`,
+    'CB1': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">CB</button>
+        </div>
+    </div>`,
+    'CB2': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">CB</button>
+        </div>
+    </div>`,
+    'LB': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">LB</button>
+        </div>
+    </div>`,
+    'RB': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">RB</button>
+        </div>
+    </div>`,
+    'CDM': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">CDM</button>
+        </div>
+    </div>`,
+    'CM': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">CM</button>
+        </div>
+    </div>`,
+    'CAM': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">CAM</button>
+        </div>
+    </div>`,
+    'LW': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">LW</button>
+        </div>
+    </div>`,
+    'RW': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">RW</button>
+        </div>
+    </div>`,
+    'ST': `<div class="carte p-8 rounded-lg relative bg-cover bg-center" style="background-image: url('./src/assets/img/cart-1.png');">
+        <div class="rounded-lg mx-auto h-20 w-20"></div>
+        <div class="flex justify-center">
+            <button class="mt-8 titulaire-btn text-green-500 text-2xl">ST</button>
+        </div>
+    </div>`
+};
+
 const country = {
     BR: "https://cdn.sofifa.net/flags/br.png",
     FR: "https://cdn.sofifa.net/flags/fr.png",
-    AG: "https://cdn.sofifa.net/flags/ar.png",
+    ARG: "https://cdn.sofifa.net/flags/ar.png",
     MR: "https://cdn.sofifa.net/flags/ma.png",
     EN: "https://cdn.sofifa.net/flags/gb-eng.png",
     IT: "https://cdn.sofifa.net/flags/it.png",
@@ -95,7 +167,7 @@ function getRandomPlayerKey(obj) {
 }
 
 
-positionPlayer.addEventListener('change', function () {
+positionPlayer.addEventListener('change', function() {
     if (this.value === 'GK') {
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
@@ -137,6 +209,7 @@ if (!jsonPlayers) {
     jsonPlayers = [];
 }
 
+
 function listplayer() {
     substitutePlayers.innerHTML = '';
     newPlayers.forEach(element => {
@@ -145,34 +218,30 @@ function listplayer() {
 }
 
 function deletePlayer(player, cardElement) {
-    // Supprimer le joueur de jsonPlayers
+    // Remove from jsonPlayers array
     const index = jsonPlayers.findIndex(p => p.name === player.name && p.position === player.position);
     if (index > -1) {
         jsonPlayers.splice(index, 1);
     }
 
-    // Supprimer le joueur de newPlayers
+    // Remove from newPlayers array if it exists there
     const newPlayerIndex = newPlayers.findIndex(p => p.name === player.name && p.position === player.position);
     if (newPlayerIndex > -1) {
         newPlayers.splice(newPlayerIndex, 1);
     }
 
-    // Mettre à jour localStorage
-    localStorage.setItem('jsonPlayers', JSON.stringify(jsonPlayers));
-    localStorage.setItem('newPlayers', JSON.stringify(newPlayers));
-
-    // Supprimer l'élément de la carte du DOM
+    // Remove the card from DOM
     if (cardElement) {
-        cardElement.parentElement.removeChild(cardElement); // Méthode plus explicite
+        cardElement.remove();
+    } else {
+        // Refresh the display
+        listplayer();
     }
-
-    // Rafraîchir la liste des joueurs (si nécessaire)
-    listplayer();
 }
 
 function editPlayer(player) {
     playerToEdit = player;
-
+    
     // Populate form with player data
     document.getElementById('Name').value = player.name;
     document.getElementById('Nationality').value = player.nationality;
@@ -186,7 +255,7 @@ function editPlayer(player) {
         document.getElementById('REF').value = player.reflexes;
         document.getElementById('SPD').value = player.speed;
         document.getElementById('POS').value = player.positioning;
-
+        
         // Show GK stats and hide field player stats
         document.getElementById('GKStats').classList.remove('hidden');
         document.querySelector('.grid.grid-cols-2.gap-4').classList.add('hidden');
@@ -197,7 +266,7 @@ function editPlayer(player) {
         document.getElementById('DRI').value = player.dribbling;
         document.getElementById('DEF').value = player.defending;
         document.getElementById('PHY').value = player.physical;
-
+        
         // Show field player stats and hide GK stats
         document.getElementById('GKStats').classList.add('hidden');
         document.querySelector('.grid.grid-cols-2.gap-4').classList.remove('hidden');
@@ -211,8 +280,8 @@ function editPlayer(player) {
 function playercardUI(addedplayer) {
     let playerImage = addedplayer.AddedManually ? '' : addedplayer.photo;
     const baseCard = `
-        <div class="relative flex justify-center items-center">
-            <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
+    <div class="relative flex justify-center items-center" >
+    <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
                 <i class="fas fa-trash-alt absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out" onclick='deletePlayer(${JSON.stringify(addedplayer)}, this.closest(".relative"))' title="Delete"></i>
                 <i class="fas fa-plus absolute bottom-2 right-1 bg-white text-green-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-green-500 hover:text-white transition duration-200 ease-in-out" onclick='selectedPlayer(${JSON.stringify(addedplayer)})' title="Add or Replace"></i>
@@ -307,103 +376,282 @@ function playercardUI(addedplayer) {
     }
 }
 
+function formationCardUI(addedplayer) {
+    let playerImage = addedplayer.AddedManually ? '' : addedplayer.photo;
+    const baseCard = `
+    <div class="relative flex justify-center items-center">
+    <img src="./src/assets/img/card12-removebg-preview.png" height="150" width="160" alt="">
+            <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">`;
+
+    if (addedplayer.position === "GK") {
+        return baseCard + `
+                ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
+                <div class="absolute object-contain" 
+                    style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">
+                    <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
+                    <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
+                </div>
+                <div class="absolute top-[60%] text-center text-white">
+                    <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
+                    <div class="flex font-bold text-[0.6rem] gap-1">
+                        <div class="flex flex-col">
+                            <span>DIV</span>
+                            <span>${addedplayer.diving}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>HAN</span>
+                            <span>${addedplayer.handling}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>KIC</span>
+                            <span>${addedplayer.kicking}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>REF</span>
+                            <span>${addedplayer.reflexes}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>SPD</span>
+                            <span>${addedplayer.speed}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>POS</span>
+                            <span>${addedplayer.positioning}</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center mt-1">
+                        <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
+                        <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    } else {
+        return baseCard + `
+                ${playerImage ? `<img src="${playerImage}" class="absolute object-contain mb-16" height="90" width="100">` : ''}
+                <div class="absolute object-contain" 
+                    style="top: 36%; left: 45%; transform: translate(-50%, -50%); height: 90px; width: 100px;">                 
+                    <div class="font-bold text-[0.7rem]">${addedplayer.rating}</div>
+                    <div class="font-semibold text-[0.7rem]">${addedplayer.position}</div>
+                </div>
+                <div class="absolute top-[60%] text-center text-white">
+                    <div class="font-bold text-[0.8rem]">${addedplayer.name}</div>
+                    <div class="flex font-bold text-[0.6rem] gap-1">
+                        <div class="flex flex-col">
+                            <span>PAC</span>
+                            <span>${addedplayer.pace}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>SHO</span>
+                            <span>${addedplayer.shooting}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>PAS</span>
+                            <span>${addedplayer.passing}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>DRI</span>
+                            <span>${addedplayer.dribbling}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>DEF</span>
+                            <span>${addedplayer.defending}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>PHY</span>
+                            <span>${addedplayer.physical}</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center mt-1">
+                        <img src="${addedplayer.flag}" alt="Country Flag" class="w-4 h-3 mx-1" />
+                        <img src="${addedplayer.logo}" alt="Team Logo" class="w-4 h-4 mx-1" />
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+}
+
+const cbPositions = {
+    CB1: false,
+    CB2: false
+};
+
 function selectedPlayer(addedplayer) {
-    // Trouver le conteneur correspondant à la position du joueur
-    let addPlayer = document.getElementById(addedplayer.position);
+    let positions;
 
-    // Supprimer la carte existante dans le slot du joueur
-    addPlayer.innerHTML = '';
+    if (addedplayer.position === 'CB') {
+        // Find first available CB position
+        if (!selectedPlayers['CB1']) {
+            positions = ['CB1'];
+        } else if (!selectedPlayers['CB2']) {
+            positions = ['CB2'];
+        } else {
+            // Both positions occupied, ask which to replace
+            if (confirm('All CB positions are filled. Replace CB1?')) {
+                positions = ['CB1'];
+            } else if (confirm('Replace CB2?')) {
+                positions = ['CB2'];
+            } else {
+                titulaireModal.style.display = "none";
+                return;
+            }
+        }
+    } else {
+        positions = [addedplayer.position];
+    }
 
-    // Ajouter la nouvelle carte dans le slot du joueur
-    let playerSlot = document.createElement('div');
-    playerSlot.innerHTML = playercardUI(addedplayer);
-    addPlayer.appendChild(playerSlot);
+    for (let pos of positions) {
+        // Get the first element with matching ID (avoiding duplicate ID issues)
+        let addPlayer = document.querySelector(`div[id="${pos}"]:not([data-occupied="true"])`);
 
-    // Fermer le modal des joueurs titulaires
+        if (addPlayer) {
+            selectedPlayers[pos] = addedplayer;
+            
+            // Mark this position as occupied
+            addPlayer.setAttribute('data-occupied', 'true');
+            
+            // Clear the inner HTML but maintain the structure
+            addPlayer.innerHTML = '';
+            
+            // Create player card maintaining original structure
+            let playerSlot = document.createElement('div');
+            playerSlot.className = 'carte rounded-lg relative bg-cover bg-center';
+            playerSlot.style.backgroundImage = "url('./src/assets/img/cart-1.png')";
+            
+            // Add player card content
+            playerSlot.innerHTML = formationCardUI(addedplayer);
+
+            // Add delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = '<i class="fas fa-times"></i>';
+            deleteButton.className = 'absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out';
+            deleteButton.onclick = (e) => {
+                e.stopPropagation();
+                removeSelectedPlayer(pos, addPlayer);
+                addPlayer.removeAttribute('data-occupied');
+            };
+
+            playerSlot.appendChild(deleteButton);
+            addPlayer.appendChild(playerSlot);
+
+            titulaireModal.style.display = "none";
+            newPlayers = [];
+            return;
+        }
+    }
+
+    alert("No available position for this player!");
     titulaireModal.style.display = "none";
-
-    // Réinitialiser la liste des nouveaux joueurs
     newPlayers = [];
 }
+
+const selectedPlayers = {};
+
+function removeSelectedPlayer(position, element) {
+    const addPlayer = element || document.querySelector(`div[id="${position}"][data-occupied="true"]`);
+    
+    if (addPlayer) {
+        // Restore original UI
+        addPlayer.innerHTML = originalUI[position];
+        
+        // Remove from selected players
+        delete selectedPlayers[position];
+        
+        // Remove occupied flag
+        addPlayer.removeAttribute('data-occupied');
+
+        // Reattach click handler to the restored button
+        const button = addPlayer.querySelector('.titulaire-btn');
+        if (button) {
+            button.onclick = function() {
+                titulaireModal.style.display = "flex";
+                let role = button.innerHTML;
+                newPlayers = jsonPlayers.filter(element => element.position == role);
+                listplayer();
+            };
+        }
+    }
+}
+
 
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Regex patterns
-    const nameRegex = /^[a-zA-ZÀ-ÿ \-']{2,50}$/;
-    const nationalityRegex = /^[A-Z]{2}$/;
-    const teamRegex = /^[a-zA-Z0-9 \-]{2,50}$/;
-    const statRegex = /^([1-9][0-9]?)$/;
-
-    // Get values from the form
-    const playername = document.getElementById("Name").value;
-    const Nationality = document.getElementById("Nationality").value;
-    const Team = document.getElementById("Team").value;
-    const positionPlayer = document.getElementById("positionPlayer").value;
-
-    let errors = [];
-
-    // Validate name
-    if (!nameRegex.test(playername)) {
-        errors.push("Le nom du joueur est invalide. 2 A 50 caractères)");
-    }
-
-    // Validate nationality
-    if (!nationalityRegex.test(Nationality)) {
-        errors.push("La nationaliter est invalide.");
-    }
-
-    // Validate team
-    if (!teamRegex.test(Team)) {
-        errors.push("Le nom de l'équipe est invalide.");
-    }
-
-    // Validate stats based on position
-    if (positionPlayer === "GK") {
-        const div = document.getElementById("DIV").value;
-        const han = document.getElementById("HAN").value;
-        const kic = document.getElementById("KIC").value;
-        const ref = document.getElementById("REF").value;
-        const spd = document.getElementById("SPD").value;
-        const pos = document.getElementById("POS").value;
-
-        if (
-            !statRegex.test(div) ||
-            !statRegex.test(han) ||
-            !statRegex.test(kic) ||
-            !statRegex.test(ref) ||
-            !statRegex.test(spd) ||
-            !statRegex.test(pos)
-        ) {
-            errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
-        }
-    } else {
-        const pac = document.getElementById("PAC").value;
-        const sho = document.getElementById("SHO").value;
-        const pas = document.getElementById("PAS").value;
-        const dri = document.getElementById("DRI").value;
-        const def = document.getElementById("DEF").value;
-        const phy = document.getElementById("PHY").value;
-
-        if (
-            !statRegex.test(pac) ||
-            !statRegex.test(sho) ||
-            !statRegex.test(pas) ||
-            !statRegex.test(dri) ||
-            !statRegex.test(def) ||
-            !statRegex.test(phy)
-        ) {
-            errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
-        }
-    }
-
-    // If there are errors, show them and stop submission
-    if (errors.length > 0) {
-        alert("Erreurs :\n" + errors.join("\n"));
-        return;
-    }
-
-    // If validation passes, continue with form processing
+     // Regex patterns
+     const nameRegex = /^[a-zA-ZÀ-ÿ \-']{2,50}$/;
+     const nationalityRegex = /^[A-Z]{2}$/;
+     const teamRegex = /^[a-zA-Z0-9 \-]{2,50}$/;
+     const statRegex = /^([1-9][0-9]?)$/;
+ 
+     // Get values from the form
+     const playername = document.getElementById("Name").value;
+     const Nationality = document.getElementById("Nationality").value;
+     const Team = document.getElementById("Team").value;
+     const positionPlayer = document.getElementById("positionPlayer").value;
+ 
+     let errors = [];
+ 
+     // Validate name
+     if (!nameRegex.test(playername)) {
+         errors.push("Le nom du joueur est invalide. (2 à 50 caractères)");
+     }
+ 
+     // Validate nationality
+     if (!nationalityRegex.test(Nationality)) {
+         errors.push("La nationalité est invalide.");
+     }
+ 
+     // Validate team
+     if (!teamRegex.test(Team)) {
+         errors.push("Le nom de l'équipe est invalide.");
+     }
+ 
+     // Validate stats based on position
+     if (positionPlayer === "GK") {
+         const div = document.getElementById("DIV").value;
+         const han = document.getElementById("HAN").value;
+         const kic = document.getElementById("KIC").value;
+         const ref = document.getElementById("REF").value;
+         const spd = document.getElementById("SPD").value;
+         const pos = document.getElementById("POS").value;
+ 
+         if (
+             !statRegex.test(div) ||
+             !statRegex.test(han) ||
+             !statRegex.test(kic) ||
+             !statRegex.test(ref) ||
+             !statRegex.test(spd) ||
+             !statRegex.test(pos)
+         ) {
+             errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
+         }
+     } else {
+         const pac = document.getElementById("PAC").value;
+         const sho = document.getElementById("SHO").value;
+         const pas = document.getElementById("PAS").value;
+         const dri = document.getElementById("DRI").value;
+         const def = document.getElementById("DEF").value;
+         const phy = document.getElementById("PHY").value;
+ 
+         if (
+             !statRegex.test(pac) ||
+             !statRegex.test(sho) ||
+             !statRegex.test(pas) ||
+             !statRegex.test(dri) ||
+             !statRegex.test(def) ||
+             !statRegex.test(phy)
+         ) {
+             errors.push("Les statistiques du joueur doivent être des nombres entre 1 et 99.");
+         }
+     }
+ 
+     // If there are errors, show them and stop submission
+     if (errors.length > 0) {
+         alert("Erreurs :\n" + errors.join("\n"));
+         return;
+     }
+    
     let playerData = {
         name: playername,
         nationality: Nationality,
@@ -415,14 +663,14 @@ playercard.addEventListener("submit", function (event) {
     };
 
     // Calculate average rating based on position
-    if (positionPlayer === "GK") {
+    if (positionPlayer === 'GK') {
         const div = parseInt(document.getElementById("DIV").value);
         const han = parseInt(document.getElementById("HAN").value);
         const kic = parseInt(document.getElementById("KIC").value);
         const ref = parseInt(document.getElementById("REF").value);
         const spd = parseInt(document.getElementById("SPD").value);
         const pos = parseInt(document.getElementById("POS").value);
-
+        
         Object.assign(playerData, {
             diving: div,
             handling: han,
@@ -439,7 +687,7 @@ playercard.addEventListener("submit", function (event) {
         const dri = parseInt(document.getElementById("DRI").value);
         const def = parseInt(document.getElementById("DEF").value);
         const phy = parseInt(document.getElementById("PHY").value);
-
+        
         Object.assign(playerData, {
             pace: pac,
             shooting: sho,
@@ -457,27 +705,23 @@ playercard.addEventListener("submit", function (event) {
 
     if (playerToEdit) {
         // Update existing player in jsonPlayers
-        const index = jsonPlayers.findIndex(
-            (p) => p.name === playerToEdit.name && p.position === playerToEdit.position
-        );
+        const index = jsonPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
         if (index > -1) {
             jsonPlayers[index] = playerData;
         }
 
         // Update player in newPlayers if it exists there
-        const newPlayerIndex = newPlayers.findIndex(
-            (p) => p.name === playerToEdit.name && p.position === playerToEdit.position
-        );
+        const newPlayerIndex = newPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
         if (newPlayerIndex > -1) {
             newPlayers[newPlayerIndex] = playerData;
         }
 
         // Find and update the existing card in the DOM
-        const allCards = Remplacement.getElementsByClassName("relative");
+        const allCards = Remplacement.getElementsByClassName('relative');
         for (let card of allCards) {
-            const nameElement = card.querySelector(".font-bold.text-\\[0\\.8rem\\]");
+            const nameElement = card.querySelector('.font-bold.text-\\[0\\.8rem\\]');
             if (nameElement && nameElement.textContent === playerToEdit.name) {
-                const parentCard = nameElement.closest(".relative");
+                const parentCard = nameElement.closest('.relative');
                 if (parentCard) {
                     parentCard.outerHTML = playercardUI(playerData);
                 }
@@ -490,7 +734,7 @@ playercard.addEventListener("submit", function (event) {
     } else {
         // Add new player
         jsonPlayers.push(playerData);
-
+        
         // Create and add new card
         let newcard = document.createElement("div");
         newcard.innerHTML = playercardUI(playerData);
@@ -504,13 +748,12 @@ playercard.addEventListener("submit", function (event) {
 
     // Reset form and close modal
     playercard.reset();
-    modal.classList.add("hidden");
+    modal.classList.add('hidden');
 
     // Reset fieldStats visibility
-    document.getElementById("fieldStats").classList.add("hidden");
-    document.getElementById("GKStats").classList.add("hidden");
+    document.getElementById('fieldStats').classList.add('hidden');
+    document.getElementById('GKStats').classList.add('hidden');
 });
-
 
 cancelModal.onclick = function () {
     newPlayers = [];
