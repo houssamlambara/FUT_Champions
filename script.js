@@ -14,8 +14,7 @@ const GKStats = document.getElementById('GKStats');
 const fieldPlayerStats = document.getElementById('fieldStats'); // Note: Changed selector to match your HTML
 
 
-// stat change GK
-positionPlayer.addEventListener('change', function() {
+positionPlayer.addEventListener('change', function () {
     if (positionPlayer.value === 'GK') {
         GKStats.classList.remove('hidden');
         fieldPlayerStats.classList.add('hidden');
@@ -52,9 +51,6 @@ titulaireButton.forEach(button => {
     };
 });
 
-// Your existing variable declarations remain the same
-
-// Add these missing object definitions for the form
 const playerImages = {
     player1: "https://cdn.sofifa.net/players/190/871/25_120.png",
     player2: "https://cdn.sofifa.net/players/020/801/25_120.png",
@@ -161,32 +157,17 @@ const club = {
     team9: "https://cdn.sofifa.net/meta/team/591/120.png"
 };
 
-// Add function to get random player image
 function getRandomPlayerKey(obj) {
-    const keys = Object.keys(obj);
-    const randomIndex = Math.floor(Math.random() * keys.length);
-    return keys[randomIndex];
+    // const keys = Object.keys(obj);
+    // const randomIndex = Math.floor(Math.random() * keys.length);
+    // return keys[randomIndex];
 }
 
-
-positionPlayer.addEventListener('change', function() {
-    if (this.value === 'GK') {
-        GKStats.classList.remove('hidden');
-        fieldPlayerStats.classList.add('hidden');
-    } else {
-        GKStats.classList.add('hidden');
-        fieldPlayerStats.classList.remove('hidden');
-    }
-});
-
-// Modal handlers
 const openModal = () => {
     modal.classList.remove('hidden');
-    // Reset form when opening
     playercard.reset();
-    // Reset playerToEdit
     playerToEdit = null;
-    // Reset position-specific stats visibility
+
     GKStats.classList.add('hidden');
     fieldPlayerStats.classList.remove('hidden');
 };
@@ -202,16 +183,6 @@ openModalButtons.forEach((button) => {
 
 closeModalButton.addEventListener('click', closeModal);
 
-// modal.addEventListener('click', (e) => {
-//     if (e.target === modal) closeModal();
-// });
-
-// Initialize jsonPlayers if fetch fails
-// if (!jsonPlayers) {
-//     jsonPlayers = [];
-// }
-
-
 function listplayer() {
     substitutePlayers.innerHTML = '';
     newPlayers.forEach(element => {
@@ -220,31 +191,28 @@ function listplayer() {
 }
 
 function deletePlayer(player, cardElement) {
-    // Remove from jsonPlayers array
+
     const index = jsonPlayers.findIndex(p => p.name === player.name && p.position === player.position);
     if (index > -1) {
         jsonPlayers.splice(index, 1);
     }
 
-    // Remove from newPlayers array if it exists there
     const newPlayerIndex = newPlayers.findIndex(p => p.name === player.name && p.position === player.position);
     if (newPlayerIndex > -1) {
         newPlayers.splice(newPlayerIndex, 1);
     }
 
-    // Remove the card from DOM
     if (cardElement) {
         cardElement.remove();
     } else {
-        // Refresh the display
+
         listplayer();
     }
 }
 
 function editPlayer(player) {
     playerToEdit = player;
-    
-    // Populate form with player data
+
     document.getElementById('Name').value = player.name;
     document.getElementById('Nationality').value = player.nationality;
     document.getElementById('Team').value = player.club;
@@ -257,8 +225,7 @@ function editPlayer(player) {
         document.getElementById('REF').value = player.reflexes;
         document.getElementById('SPD').value = player.speed;
         document.getElementById('POS').value = player.positioning;
-        
-        // Show GK stats and hide field player stats
+
         document.getElementById('GKStats').classList.remove('hidden');
         document.querySelector('.grid.grid-cols-2.gap-4').classList.add('hidden');
     } else {
@@ -268,17 +235,15 @@ function editPlayer(player) {
         document.getElementById('DRI').value = player.dribbling;
         document.getElementById('DEF').value = player.defending;
         document.getElementById('PHY').value = player.physical;
-        
-        // Show field player stats and hide GK stats
+
         document.getElementById('GKStats').classList.add('hidden');
         document.querySelector('.grid.grid-cols-2.gap-4').classList.remove('hidden');
     }
 
-    // Open modal
     modal.classList.remove('hidden');
 }
 
-// Update the playercardUI function to include onclick handlers
+// Update the playercardUI 
 function playercardUI(addedplayer) {
     let playerImage = addedplayer.AddedManually ? '' : addedplayer.photo;
     const baseCard = `
@@ -483,13 +448,13 @@ function selectedPlayer(addedplayer) {
     let positions;
 
     if (addedplayer.position === 'CB') {
-        // Find first available CB position
+
         if (!selectedPlayers['CB1']) {
             positions = ['CB1'];
         } else if (!selectedPlayers['CB2']) {
             positions = ['CB2'];
         } else {
-            // Both positions occupied, ask which to replace
+
             if (confirm('All CB positions are filled. Replace CB1?')) {
                 positions = ['CB1'];
             } else if (confirm('Replace CB2?')) {
@@ -504,27 +469,19 @@ function selectedPlayer(addedplayer) {
     }
 
     for (let pos of positions) {
-        // Get the first element with matching ID (avoiding duplicate ID issues)
+
         let addPlayer = document.querySelector(`div[id="${pos}"]:not([data-occupied="true"])`);
 
         if (addPlayer) {
             selectedPlayers[pos] = addedplayer;
-            
-            // Mark this position as occupied
             addPlayer.setAttribute('data-occupied', 'true');
-            
-            // Clear the inner HTML but maintain the structure
             addPlayer.innerHTML = '';
-            
-            // Create player card maintaining original structure
+
             let playerSlot = document.createElement('div');
             playerSlot.className = 'carte rounded-lg relative bg-cover bg-center';
             playerSlot.style.backgroundImage = "url('./src/assets/img/cart-1.png')";
-            
-            // Add player card content
             playerSlot.innerHTML = formationCardUI(addedplayer);
 
-            // Add delete button
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '<i class="fas fa-times"></i>';
             deleteButton.className = 'absolute top-2 right-1 bg-white text-red-500 rounded-full shadow-md p-2 cursor-pointer hover:bg-red-500 hover:text-white transition duration-200 ease-in-out';
@@ -543,7 +500,6 @@ function selectedPlayer(addedplayer) {
         }
     }
 
-    alert("No available position for this player!");
     titulaireModal.style.display = "none";
     newPlayers = [];
 }
@@ -552,21 +508,15 @@ const selectedPlayers = {};
 
 function removeSelectedPlayer(position, element) {
     const addPlayer = element || document.querySelector(`div[id="${position}"][data-occupied="true"]`);
-    
-    if (addPlayer) {
-        // Restore original UI
-        addPlayer.innerHTML = originalUI[position];
-        
-        // Remove from selected players
-        delete selectedPlayers[position];
-        
-        // Remove occupied flag
-        addPlayer.removeAttribute('data-occupied');
 
-        // Reattach click handler to the restored button
+    if (addPlayer) {
+        addPlayer.innerHTML = originalUI[position];
+        delete selectedPlayers[position];
+
+        addPlayer.removeAttribute('data-occupied');
         const button = addPlayer.querySelector('.titulaire-btn');
         if (button) {
-            button.onclick = function() {
+            button.onclick = function () {
                 titulaireModal.style.display = "flex";
                 let role = button.innerHTML;
                 newPlayers = jsonPlayers.filter(element => element.position == role);
@@ -580,80 +530,73 @@ function removeSelectedPlayer(position, element) {
 playercard.addEventListener("submit", function (event) {
     event.preventDefault();
 
-     // Regex patterns
-     const nameRegex = /^[a-zA-ZÀ-ÿ \-']{2,50}$/;
-     const nationalityRegex = /^[A-Z]{2}$/;
-     const teamRegex = /^[a-zA-Z0-9 \-]{2,50}$/;
-     const statRegex = /^([1-9][0-9]?)$/;
- 
-     // Get values from the form
-     const playername = document.getElementById("Name").value;
-     const Nationality = document.getElementById("Nationality").value;
-     const Team = document.getElementById("Team").value;
-     const positionPlayer = document.getElementById("positionPlayer").value;
- 
-     let errors = [];
- 
-     // Validate name
-     if (!nameRegex.test(playername)) {
-         errors.push("Le nom du joueur est invalide. (2 a 50 caractères)");
-     }
- 
-     // Validate nationality
-     if (!nationalityRegex.test(Nationality)) {
-         errors.push("La nationalité est invalide.");
-     }
- 
-     // Validate team
-     if (!teamRegex.test(Team)) {
-         errors.push("Le nom de l'equipe est invalide.");
-     }
- 
-     // Validate stats based on position
-     if (positionPlayer === "GK") {
-         const div = document.getElementById("DIV").value;
-         const han = document.getElementById("HAN").value;
-         const kic = document.getElementById("KIC").value;
-         const ref = document.getElementById("REF").value;
-         const spd = document.getElementById("SPD").value;
-         const pos = document.getElementById("POS").value;
- 
-         if (
-             !statRegex.test(div) ||
-             !statRegex.test(han) ||
-             !statRegex.test(kic) ||
-             !statRegex.test(ref) ||
-             !statRegex.test(spd) ||
-             !statRegex.test(pos)
-         ) {
-             errors.push("Les statistiques du joueur doivent etre entre 1 et 99.");
-         }
-     } else {
-         const pac = document.getElementById("PAC").value;
-         const sho = document.getElementById("SHO").value;
-         const pas = document.getElementById("PAS").value;
-         const dri = document.getElementById("DRI").value;
-         const def = document.getElementById("DEF").value;
-         const phy = document.getElementById("PHY").value;
- 
-         if (
-             !statRegex.test(pac) ||
-             !statRegex.test(sho) ||
-             !statRegex.test(pas) ||
-             !statRegex.test(dri) ||
-             !statRegex.test(def) ||
-             !statRegex.test(phy)
-         ) {
-             errors.push("Les statistiques du joueur doivent etre entre 1 et 99.");
-         }
-     }
- 
-     // If there are errors, show them and stop submission
-     if (errors.length > 0) {
-         alert("Erreurs :\n" + errors.join("\n"));
-         return;
-     }
-    
+    const nameRegex = /^[a-zA-ZÀ-ÿ \-']{2,50}$/;
+    const nationalityRegex = /^[A-Z]{2}$/;
+    const teamRegex = /^[a-zA-Z0-9 \-]{2,50}$/;
+    const statRegex = /^([1-9][0-9]?)$/;
+
+    const playername = document.getElementById("Name").value;
+    const Nationality = document.getElementById("Nationality").value;
+    const Team = document.getElementById("Team").value;
+    const positionPlayer = document.getElementById("positionPlayer").value;
+
+    let errors = [];
+
+    if (!nameRegex.test(playername)) {
+        errors.push("Le nom du joueur est invalide. (2 a 50 caractères)");
+    }
+
+    if (!nationalityRegex.test(Nationality)) {
+        errors.push("La nationalité est invalide.");
+    }
+
+    if (!teamRegex.test(Team)) {
+        errors.push("Le nom de l'equipe est invalide.");
+    }
+
+    if (positionPlayer === "GK") {
+        const div = document.getElementById("DIV").value;
+        const han = document.getElementById("HAN").value;
+        const kic = document.getElementById("KIC").value;
+        const ref = document.getElementById("REF").value;
+        const spd = document.getElementById("SPD").value;
+        const pos = document.getElementById("POS").value;
+
+        if (
+            !statRegex.test(div) ||
+            !statRegex.test(han) ||
+            !statRegex.test(kic) ||
+            !statRegex.test(ref) ||
+            !statRegex.test(spd) ||
+            !statRegex.test(pos)
+        ) {
+            errors.push("Les statistiques du joueur doivent etre entre 1 et 99.");
+        }
+    } else {
+        const pac = document.getElementById("PAC").value;
+        const sho = document.getElementById("SHO").value;
+        const pas = document.getElementById("PAS").value;
+        const dri = document.getElementById("DRI").value;
+        const def = document.getElementById("DEF").value;
+        const phy = document.getElementById("PHY").value;
+
+        if (
+            !statRegex.test(pac) ||
+            !statRegex.test(sho) ||
+            !statRegex.test(pas) ||
+            !statRegex.test(dri) ||
+            !statRegex.test(def) ||
+            !statRegex.test(phy)
+        ) {
+            errors.push("Les statistiques du joueur doivent etre entre 1 et 99.");
+        }
+    }
+
+    if (errors.length > 0) {
+        alert("Erreurs :\n" + errors.join("\n"));
+        return;
+    }
+
     let playerData = {
         name: playername,
         nationality: Nationality,
@@ -664,7 +607,6 @@ playercard.addEventListener("submit", function (event) {
         AddedManually: true
     };
 
-    // Calculate average rating based on position
     if (positionPlayer === 'GK') {
         const div = parseInt(document.getElementById("DIV").value);
         const han = parseInt(document.getElementById("HAN").value);
@@ -672,7 +614,7 @@ playercard.addEventListener("submit", function (event) {
         const ref = parseInt(document.getElementById("REF").value);
         const spd = parseInt(document.getElementById("SPD").value);
         const pos = parseInt(document.getElementById("POS").value);
-        
+
         Object.assign(playerData, {
             diving: div,
             handling: han,
@@ -689,7 +631,7 @@ playercard.addEventListener("submit", function (event) {
         const dri = parseInt(document.getElementById("DRI").value);
         const def = parseInt(document.getElementById("DEF").value);
         const phy = parseInt(document.getElementById("PHY").value);
-        
+
         Object.assign(playerData, {
             pace: pac,
             shooting: sho,
@@ -701,24 +643,21 @@ playercard.addEventListener("submit", function (event) {
         });
     }
 
-    // Add random player image
     let randomPlayerKey = getRandomPlayerKey(playerImages);
     playerData.photo = playerImages[randomPlayerKey];
 
     if (playerToEdit) {
-        // Update existing player in jsonPlayers
+
         const index = jsonPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
         if (index > -1) {
             jsonPlayers[index] = playerData;
         }
 
-        // Update player in newPlayers if it exists there
         const newPlayerIndex = newPlayers.findIndex(p => p.name === playerToEdit.name && p.position === playerToEdit.position);
         if (newPlayerIndex > -1) {
             newPlayers[newPlayerIndex] = playerData;
         }
 
-        // Find and update the existing card in the DOM
         const allCards = Remplacement.getElementsByClassName('relative');
         for (let card of allCards) {
             const nameElement = card.querySelector('.font-bold.text-\\[0\\.8rem\\]');
@@ -731,28 +670,22 @@ playercard.addEventListener("submit", function (event) {
             }
         }
 
-        // Reset playerToEdit
         playerToEdit = null;
     } else {
-        // Add new player
         jsonPlayers.push(playerData);
-        
-        // Create and add new card
+
         let newcard = document.createElement("div");
         newcard.innerHTML = playercardUI(playerData);
         Remplacement.appendChild(newcard);
     }
 
-    // Refresh the display if we're showing filtered players
     if (newPlayers.length > 0) {
         listplayer();
     }
 
-    // Reset form and close modal
     playercard.reset();
     modal.classList.add('hidden');
 
-    // Reset fieldStats visibility
     document.getElementById('fieldStats').classList.add('hidden');
     document.getElementById('GKStats').classList.add('hidden');
 });
